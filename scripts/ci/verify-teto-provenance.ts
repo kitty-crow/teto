@@ -33,7 +33,7 @@ export const assertThistleTetoProvenance = (config: BaguetteConfig, manifest: Ma
     "Compiled WASM must record the original native Thistle kernel module");
   assert.ok(!manifest.canonicalOriginalModules?.some(separate),
     "A separate Teto kernel cannot enter the dependency graph transitively");
-  assert.ok(manifest.generatedFrom?.some(entry => /(?:^|\\/)native\\/kernel\\.ts$/.test(entry.path.replaceAll("\\\\", "/"))),
+  assert.ok(manifest.generatedFrom?.some(entry => entry.path.replaceAll("\\", "/").endsWith("/src/native/kernel.ts")),
     "Baguette must prove that Bake-lowered native Thistle source reached its compiler");
   assert.ok(!manifest.generatedFrom?.some(entry => separate(entry.path)),
     "Compiled WASM provenance must not include separate Teto execution source");
