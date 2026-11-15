@@ -27,6 +27,8 @@ const config = {
   allowedHostImports: [{ module: "env", name: "memory", kind: "memory" }],
   completeKernel: true,
   productionKernel: "Thistle",
+  canonicalSource: "Thistle",
+  canonicalRevision: revision,
   materialiseInferredTypes: true,
 };
 const path = resolve(source, "baguette.kernel.config.json");
