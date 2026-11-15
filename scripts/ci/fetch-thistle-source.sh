@@ -23,9 +23,17 @@ if [[ "${THISTLE_USE_STAGED:-0}" == "1" ]]; then
   exit 0
 fi
 rm -rf -- "$DEST"
-# Fetch the current tip of the selected Thistle branch at invocation time.
-# A full immutable commit SHA is recorded so the build can be reproduced.
-git clone --quiet --depth 1 --single-branch --branch "$REVISION" --recurse-submodules --shallow-submodules "$UPSTREAM" "$DEST"
+# Named refs follow their latest tip; full SHAs select an exact immutable
+# commit without creating an upstream merge or mutating the Teto repository.
+if [[ "$REVISION" =~ ^[0-9a-f]{40}$ ]]; then
+  git init --quiet "$DEST"
+  git -C "$DEST" remote add origin "$UPSTREAM"
+  git -C "$DEST" fetch --quiet --depth 1 origin "$REVISION"
+  git -C "$DEST" -c advice.detachedHead=false checkout --quiet --detach "$REVISION"
+  git -C "$DEST" submodule update --init --recursive --depth 1 --quiet
+else
+  git clone --quiet --depth 1 --single-branch --branch "$REVISION" --recurse-submodules --shallow-submodules "$UPSTREAM" "$DEST"
+fi
 SHA="$(git -C "$DEST" rev-parse HEAD)"
 git -C "$DEST" diff --quiet
 git -C "$DEST" diff --cached --quiet
