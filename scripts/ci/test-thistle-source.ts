@@ -40,11 +40,18 @@ const config = {
     export: false,
   },
   runtime: "stub",
-  variants: [{
-    name: "thistle-memory-probe",
-    threaded: false,
-    preludeFile: "../../baguette/prelude/teto-baseline.ts",
-  }],
+  variants: [
+    {
+      name: "thistle-memory-probe",
+      threaded: false,
+      preludeFile: "../../baguette/prelude/teto-baseline.ts",
+    },
+    {
+      name: "thistle-memory-probe-threads",
+      threaded: true,
+      preludeFile: "../../baguette/prelude/teto-threaded.ts",
+    },
+  ],
   allowedHostImports: [{ module: "env", name: "memory", kind: "memory" }],
   completeKernel: false,
   productionKernel: "Thistle",
@@ -58,19 +65,22 @@ const compiled = spawnSync("bun", [
 ], { cwd: root, stdio: "inherit" });
 assert.equal(compiled.status, 0, "Bake/Baguette failed to compile canonical Thistle memory source");
 
-const binary = await readFile(resolve(root, "dist/thistle-memory-probe/thistle-memory-probe.wasm"));
-const memory = new WebAssembly.Memory({
-  initial: THISTLE_WASM_INITIAL_PAGES,
-  maximum: THISTLE_WASM_MAXIMUM_PAGES,
-});
-assert.equal(memory.buffer.byteLength, 512 * 1024 * 1024, "Kernel memory allocation is not 512 MiB");
-const instance = await WebAssembly.instantiate(binary, { env: { memory } });
-const exports = instance.instance.exports as {
-  thistleKernelInitialPages(): number;
-  thistleKernelMaximumPages(): number;
-};
-assert.equal(exports.thistleKernelInitialPages(), 8192);
-assert.equal(exports.thistleKernelMaximumPages(), THISTLE_WASM_MAXIMUM_PAGES);
+for (const [name, threaded] of [["thistle-memory-probe", false], ["thistle-memory-probe-threads", true]] as const) {
+  const binary = await readFile(resolve(root, `dist/thistle-memory-probe/${name}.wasm`));
+  const memory = new WebAssembly.Memory({
+    initial: THISTLE_WASM_INITIAL_PAGES,
+    maximum: THISTLE_WASM_MAXIMUM_PAGES,
+    shared: threaded,
+  });
+  assert.equal(memory.buffer.byteLength, 512 * 1024 * 1024, "Kernel memory allocation is not 512 MiB");
+  const instance = await WebAssembly.instantiate(binary, { env: { memory } });
+  const exports = instance.instance.exports as {
+    thistleKernelInitialPages(): number;
+    thistleKernelMaximumPages(): number;
+  };
+  assert.equal(exports.thistleKernelInitialPages(), 8192, name);
+  assert.equal(exports.thistleKernelMaximumPages(), THISTLE_WASM_MAXIMUM_PAGES, name);
+}
 
 const manifest = JSON.parse(await readFile(
   resolve(root, "dist/thistle-memory-probe/thistle-memory-probe.manifest.json"), "utf8",
@@ -91,4 +101,4 @@ assert.equal(entry.sha256, loweredHash, "Manifest does not match the emitted Bak
 await mkdir(resolve(root, "dist/thistle-memory-probe"), { recursive: true });
 await writeFile(resolve(root, "dist/thistle-memory-probe/thistle-origin.json"),
   JSON.stringify({ repository: "kitty-crow/thistle", commit: recordedSha, path: "src/core/kernel-memory.ts", originalSha256: originalHash, loweredSha256: loweredHash, bakeOutput: entry.path }, null, 2) + "\n");
-console.log(`PASS: Thistle ${recordedSha} -> Bake -> Baguette -> WASM; memory 512 MiB (8192 pages)`);
+console.log(`PASS: Thistle ${recordedSha} -> Bake -> Baguette -> baseline and threaded WASM; memory 512 MiB (8192 pages)`);
