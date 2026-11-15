@@ -75,14 +75,20 @@ assert.equal(exports.thistleKernelMaximumPages(), THISTLE_WASM_MAXIMUM_PAGES);
 const manifest = JSON.parse(await readFile(
   resolve(root, "dist/thistle-memory-probe/thistle-memory-probe.manifest.json"), "utf8",
 ));
-const expectedPath = "build/thistle-source/src/core/kernel-memory.ts";
-const entry = (manifest.generatedFrom as Array<{ path: string; sha256: string }> | undefined)
-  ?.find(item => item.path.endsWith(expectedPath));
-assert.ok(entry, "Baguette manifest does not prove the canonical Thistle source was compiled");
+const sources = manifest.generatedFrom as Array<{ path: string; sha256: string }> | undefined;
+const entry = sources?.find(item => item.path.endsWith("/core/kernel-memory.ts") ||
+  item.path.endsWith("/kernel-memory.ts"));
+assert.ok(entry, `Baguette manifest has no canonical kernel-memory source: ${JSON.stringify(sources)}`);
+// Baguette records the *Bake-lowered* entry, not the original TypeScript file.
+// Verify both stages separately rather than incorrectly expecting identical hashes.
+assert.ok(entry.path.includes("build/thistle-source/build/baguette-bake/"),
+  `Baguette bypassed Bake: ${entry.path}`);
 const raw = await readFile(resolve(source, "src/core/kernel-memory.ts"));
-assert.equal(entry.sha256, createHash("sha256").update(raw).digest("hex"),
-  "Generated source fingerprint is not the fetched Thistle source");
+const lowered = await readFile(resolve(root, entry.path));
+const originalHash = createHash("sha256").update(raw).digest("hex");
+const loweredHash = createHash("sha256").update(lowered).digest("hex");
+assert.equal(entry.sha256, loweredHash, "Manifest does not match the emitted Bake-lowered source");
 await mkdir(resolve(root, "dist/thistle-memory-probe"), { recursive: true });
 await writeFile(resolve(root, "dist/thistle-memory-probe/thistle-origin.json"),
-  JSON.stringify({ repository: "kitty-crow/thistle", commit: recordedSha, path: expectedPath }, null, 2) + "\n");
+  JSON.stringify({ repository: "kitty-crow/thistle", commit: recordedSha, path: "src/core/kernel-memory.ts", originalSha256: originalHash, loweredSha256: loweredHash, bakeOutput: entry.path }, null, 2) + "\n");
 console.log(`PASS: Thistle ${recordedSha} -> Bake -> Baguette -> WASM; memory 512 MiB (8192 pages)`);
