@@ -18,7 +18,7 @@ const config = {
   ...previous,
   name: "Teto",
   project: "tsconfig.json",
-  entries: ["src/core/kernel.ts"],
+  entries: ["src/native/abi.ts", "src/native/kernel.ts", "src/native/vfs.ts", "src/native/thx.ts", "src/native/start.ts"],
   generatedDir: "../teto-generated",
   outDir: "../../dist/teto",
   moduleBaseName: "teto",

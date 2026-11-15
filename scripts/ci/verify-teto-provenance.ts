@@ -8,11 +8,12 @@ interface BaguetteConfig {
   canonicalSource?: string;
   canonicalRevision?: string;
   canonicalOriginalEntries?: string[];
+  canonicalOriginalModules?: string[];
   productionKernel?: string;
 }
-interface Manifest { generatedFrom?: Array<{ path: string }>; }
+interface Manifest { generatedFrom?: Array<{ path: string }>; canonicalOriginalModules?: string[]; canonicalRevision?: string; canonicalOriginalEntries?: string[]; }
 const canonical = (path: string): boolean =>
-  /(?:^|\/)src\/core\/kernel\.ts$/.test(path.replaceAll("\\", "/"));
+  /(?:^|\/)src\/native\/kernel\.ts$/.test(path.replaceAll("\\", "/"));
 const separate = (path: string): boolean =>
   /(?:^|\/)src\/teto\/kernel\.ts$/.test(path.replaceAll("\\", "/"));
 
@@ -21,13 +22,19 @@ export const assertThistleTetoProvenance = (config: BaguetteConfig, manifest: Ma
   assert.equal(config.canonicalSource, "Thistle", "Production build must declare canonical Thistle source");
   assert.match(config.canonicalRevision ?? "", /^[a-f0-9]{40}$/, "Production build must pin a real Thistle HEAD");
   assert.equal(config.completeKernel, true, "Teto must compile the complete canonical Thistle kernel");
-  assert.ok(config.entries?.some(canonical), "Teto must use src/core/kernel.ts as a Baguette entry");
+  assert.ok(config.entries?.some(canonical), "Teto must use src/native/kernel.ts as a Baguette entry");
   assert.ok(!config.entries?.some(separate), "Teto must never compile src/teto/kernel.ts");
   const origin = (manifest as Manifest & { canonicalOriginalEntries?: string[]; canonicalRevision?: string })
     .canonicalOriginalEntries;
   assert.ok(origin?.some(canonical), "Baguette manifest must retain original Thistle kernel source");
   assert.equal((manifest as Manifest & { canonicalRevision?: string }).canonicalRevision,
     config.canonicalRevision, "Compiled Teto must be traced to the selected Thistle revision");
+  assert.ok(manifest.canonicalOriginalModules?.some(canonical),
+    "Compiled WASM must record the original native Thistle kernel module");
+  assert.ok(!manifest.canonicalOriginalModules?.some(separate),
+    "A separate Teto kernel cannot enter the dependency graph transitively");
+  assert.ok(manifest.generatedFrom?.some(entry => /(?:^|\\/)native\\/kernel\\.ts$/.test(entry.path.replaceAll("\\\\", "/"))),
+    "Baguette must prove that Bake-lowered native Thistle source reached its compiler");
   assert.ok(!manifest.generatedFrom?.some(entry => separate(entry.path)),
     "Compiled WASM provenance must not include separate Teto execution source");
 };
@@ -36,10 +43,11 @@ export const assertThistleTetoProvenance = (config: BaguetteConfig, manifest: Ma
 const bad = { entries: ["src/teto/kernel.ts"], completeKernel: false, productionKernel: "Thistle" };
 assert.throws(() => assertThistleTetoProvenance(bad, { generatedFrom: [{ path: "src/teto/kernel.ts" }] }));
 assert.doesNotThrow(() => assertThistleTetoProvenance(
-  { entries: ["src/core/kernel.ts", "src/teto/abi.ts"], completeKernel: true, productionKernel: "Thistle",
+  { entries: ["src/native/kernel.ts", "src/native/abi.ts"], completeKernel: true, productionKernel: "Thistle",
     canonicalSource: "Thistle", canonicalRevision: "f851ea0c70a6be819be70aa0112ca1f84d67d873" },
-  { generatedFrom: [{ path: "src/core/kernel.ts" }],
-    canonicalOriginalEntries: ["src/core/kernel.ts"],
+  { generatedFrom: [{ path: "src/native/kernel.ts" }],
+    canonicalOriginalEntries: ["src/native/kernel.ts"],
+    canonicalOriginalModules: ["src/native/kernel.ts"],
     canonicalRevision: "f851ea0c70a6be819be70aa0112ca1f84d67d873" },
 ));
 

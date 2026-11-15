@@ -11,7 +11,7 @@ const config = {
   schema: 1,
   name: "Canonical Thistle complete kernel migration probe",
   project: "tsconfig.json",
-  entries: ["src/core/kernel.ts"],
+  entries: ["src/native/abi.ts", "src/native/kernel.ts", "src/native/vfs.ts", "src/native/thx.ts", "src/native/start.ts"],
   generatedDir: "../thistle-kernel-generated",
   outDir: "../../dist/thistle-kernel-probe",
   moduleBaseName: "thistle-kernel-probe",

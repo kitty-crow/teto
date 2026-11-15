@@ -3,7 +3,11 @@
   "name": "Teto",
   "project": "build/thistle-source/tsconfig.json",
   "entries": [
-    "build/thistle-source/src/core/kernel.ts"
+    "build/thistle-source/src/native/abi.ts",
+    "build/thistle-source/src/native/kernel.ts",
+    "build/thistle-source/src/native/vfs.ts",
+    "build/thistle-source/src/native/thx.ts",
+    "build/thistle-source/src/native/start.ts"
   ],
   "generatedDir": "build/teto-generated",
   "outDir": "dist/teto",
