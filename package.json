@@ -10,8 +10,10 @@
     "teto:build": "bun baguette/src/compiler.ts",
     "teto:validate": "bun baguette/src/compiler.ts --validate-only",
     "teto:build:fast": "bun baguette/src/compiler.ts --skip-determinism-check",
-    "test": "npm run build && npm run teto:validate",
-    "check": "npm test"
+    "test": "npm run build && npm run teto:validate && npm run test:thistle-source && npm run test:provenance",
+    "check": "npm test",
+    "test:thistle-source": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/test-thistle-source.ts",
+    "test:provenance": "bun scripts/ci/verify-teto-provenance.ts"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",

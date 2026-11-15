@@ -30,5 +30,8 @@ jobs:
             npm install
           fi
 
-      - name: Check
+      - name: Check canonical Thistle source and Teto production provenance
+        env:
+          # Integration until Thistle PR #1 is merged into main.
+          THISTLE_REF: fix/canonical-teto-512m-source
         run: npm test
