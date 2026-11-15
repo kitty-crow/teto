@@ -7,10 +7,10 @@
   "scripts": {
     "build": "npm run build:host && npm run teto:build",
     "build:host": "rm -rf build dist && tsc -p tsconfig.json",
-    "teto:build": "bun baguette/src/compiler.ts",
-    "teto:validate": "bun baguette/src/compiler.ts --validate-only",
-    "teto:build:fast": "bun baguette/src/compiler.ts --skip-determinism-check",
-    "test": "npm run build && npm run teto:validate && npm run test:thistle-source && npm run test:provenance",
+    "teto:build": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts",
+    "teto:validate": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts --validate-only",
+    "teto:build:fast": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts --skip-determinism-check",
+    "test": "npm run build:host && npm run test:thistle-source && bun scripts/ci/build-thistle-kernel.ts && npm run test:provenance",
     "check": "npm test",
     "test:thistle-source": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/test-thistle-source.ts",
     "test:provenance": "bun scripts/ci/verify-teto-provenance.ts"
