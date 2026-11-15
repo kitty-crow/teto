@@ -35,3 +35,12 @@ jobs:
           # Integration until Thistle PR #1 is merged into main.
           THISTLE_REF: fix/canonical-teto-512m-source
         run: npm test
+      - name: Diagnose compiling the complete canonical Thistle kernel
+        if: always()
+        continue-on-error: true
+        env:
+          THISTLE_REF: fix/canonical-teto-512m-source
+        run: |
+          if [ ! -f build/thistle-source.sha ]; then bash scripts/ci/fetch-thistle-source.sh; fi
+          bun scripts/ci/probe-thistle-kernel.ts
+
