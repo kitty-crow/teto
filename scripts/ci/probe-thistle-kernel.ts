@@ -15,7 +15,7 @@ const config = {
   generatedDir: "../thistle-kernel-generated",
   outDir: "../../dist/thistle-kernel-probe",
   moduleBaseName: "thistle-kernel-probe",
-  intrinsicModules: [],
+  intrinsicModules: ["src/native/types.ts","src/native/memory.ts","src/native/word.ts","src/core/rv64-numbers.ts"],
   abi: { exports: "all-exported-functions" },
   memory: { initialPages: 8192, maximumPages: 32768, import: true, export: false },
   runtime: "stub",

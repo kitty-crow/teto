@@ -12,7 +12,12 @@
   "generatedDir": "build/teto-generated",
   "outDir": "dist/teto",
   "moduleBaseName": "teto",
-  "intrinsicModules": [],
+  "intrinsicModules": [
+    "build/thistle-source/src/native/types.ts",
+    "build/thistle-source/src/native/memory.ts",
+    "build/thistle-source/src/native/word.ts",
+    "build/thistle-source/src/core/rv64-numbers.ts"
+  ],
   "abi": {
     "exports": "all-exported-functions",
     "verify": {
