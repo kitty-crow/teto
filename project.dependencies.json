@@ -23,7 +23,7 @@
       "name": "Baguette",
       "repository": "kitty-crow/baguette",
       "path": "baguette",
-      "commit": "51314b0eb0fa6eae17772b59332e299052446726",
+      "commit": "04992d4fd26d6dbc27b21e7afdd6cb99627e358a",
       "relationship": "build",
       "direct": true,
       "updatePolicy": "pull-request"

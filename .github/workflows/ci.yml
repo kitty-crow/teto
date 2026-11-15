@@ -30,5 +30,23 @@ jobs:
             npm install
           fi
 
-      - name: Check
+      - name: Check canonical Thistle source and Teto production provenance
+        env:
+          # Build the merged canonical Thistle kernel from main.
+          THISTLE_REF: main
         run: npm test
+      - name: Verify immutable Thistle SHA fetch and exact generated source
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          SHA="$(cat build/thistle-source.sha)"
+          THISTLE_REF="$SHA" bash scripts/ci/fetch-thistle-source.sh
+          [[ "$(cat build/thistle-source.sha)" == "$SHA" ]]
+          node scripts/ci/stage-thistle-native.mjs --check
+      - name: Require successful canonical Thistle native-kernel validation
+        env:
+          THISTLE_REF: main
+        run: |
+          if [ ! -f build/thistle-source.sha ]; then bash scripts/ci/fetch-thistle-source.sh; fi
+          bun scripts/ci/probe-thistle-kernel.ts
+
