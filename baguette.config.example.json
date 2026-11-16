@@ -1,37 +1,42 @@
 {
-  "$schema": "./docs/baguette.schema.json",
   "schema": 1,
   "name": "Teto",
-  "project": "tsconfig.json",
+  "project": "build/thistle-source/tsconfig.json",
   "entries": [
-    "src/kernel/main.ts"
+    "build/thistle-source/src/native/abi.ts",
+    "build/thistle-source/src/native/kernel.ts",
+    "build/thistle-source/src/native/vfs.ts",
+    "build/thistle-source/src/native/thx.ts",
+    "build/thistle-source/src/native/start.ts"
   ],
   "generatedDir": "build/teto-generated",
   "outDir": "dist/teto",
   "moduleBaseName": "teto",
-  "intrinsicModules": [],
-  "typeAliases": {
-    "I32": "i32",
-    "U32": "u32",
-    "I64": "i64",
-    "U64": "u64",
-    "Ptr": "u32"
-  },
-  "abiTypes": {
-    "I32": "number",
-    "U32": "number",
-    "I64": "bigint",
-    "U64": "bigint",
-    "Ptr": "number"
-  },
+  "intrinsicModules": [
+    "build/thistle-source/src/native/types.ts",
+    "build/thistle-source/src/native/memory.ts",
+    "build/thistle-source/src/native/word.ts",
+    "build/thistle-source/src/core/rv64-numbers.ts"
+  ],
   "abi": {
-    "exports": [
-      "kernelInit",
-      "kernelRun"
-    ]
+    "exports": "all-exported-functions",
+    "verify": {
+      "init": "tetoKernelInit",
+      "initArgs": [
+        0,
+        1,
+        0
+      ],
+      "initExpected": 0,
+      "valid": "tetoKernelValid",
+      "validArgs": [
+        0
+      ],
+      "validExpected": 1
+    }
   },
   "memory": {
-    "initialPages": 256,
+    "initialPages": 8192,
     "maximumPages": 32768,
     "import": true,
     "export": false
@@ -40,11 +45,13 @@
   "variants": [
     {
       "name": "teto",
-      "threaded": false
+      "threaded": false,
+      "preludeFile": "baguette/prelude/teto-baseline.ts"
     },
     {
       "name": "teto-threads",
-      "threaded": true
+      "threaded": true,
+      "preludeFile": "baguette/prelude/teto-threaded.ts"
     }
   ],
   "allowedHostImports": [
@@ -54,8 +61,37 @@
       "kind": "memory"
     }
   ],
-  "completeKernel": false,
+  "completeKernel": true,
   "productionKernel": "Thistle",
+  "typeAliases": {
+    "TetoMemory": "usize",
+    "I8": "i8",
+    "U8": "u8",
+    "I16": "i16",
+    "U16": "u16",
+    "I32": "i32",
+    "U32": "u32",
+    "I64": "i64",
+    "U64": "u64",
+    "F32": "f32",
+    "F64": "f64",
+    "Ptr": "u32"
+  },
+  "abiTypes": {
+    "TetoMemory": "number",
+    "I8": "number",
+    "U8": "number",
+    "I16": "number",
+    "U16": "number",
+    "I32": "number",
+    "U32": "number",
+    "I64": "bigint",
+    "U64": "bigint",
+    "F32": "number",
+    "F64": "number",
+    "Ptr": "number"
+  },
   "materialiseInferredTypes": true,
-  "asyncLowering": "state-machine"
+  "canonicalSource": "Thistle",
+  "canonicalRevision": "RESOLVED_BY_OFFICIAL_TETO_BUILD"
 }
