@@ -1,0 +1,4 @@
+46bed44519b3eeaea82f8a69b0d012099fd3680da48c232b3cb0eeac8615801b  src/teto.wat
+91051800bece4461b48a86ca523e20d5fba2a7dd48f032580be1407069e8cb5f  src/teto-threads.wat
+2f42aa864a2e0aff2de0fe3d8f10d22c9ba504b98e5dd11a367ccacdac1e5d92  abi/host-interface.d.ts
+cde2cb70399b7e138411adee4dca635d88bcf70ffaaa28349788769809589fde  teto.manifest.json
