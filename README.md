@@ -19,4 +19,4 @@ npm install --package-lock=false
 npm run regenerate
 ```
 
-GitHub Actions regenerates the WAT from the pinned Thistle, Bake and Baguette revisions (Bake's gitlink is nested inside Baguette). It compares the resulting source against the repository and requires the standalone build to reproduce the reference binary. See [build instructions](docs/build.md).
+GitHub Actions regenerates the WAT from pinned Thistle and Baguette revisions. Baguette pins Bake. It compares the resulting source against the repository and requires the standalone build to reproduce the reference binary. See [build instructions](docs/build.md).
