@@ -11,6 +11,15 @@
       "updatePolicy": "pull-request"
     },
     {
+      "name": "Bake",
+      "repository": "kittycrow-kittyx/bake",
+      "path": "baguette/vendor/bake",
+      "commit": "f5a2d6076bfd87309f89485f8b291b45a8592af5",
+      "relationship": "build",
+      "direct": false,
+      "updatePolicy": "via-baguette"
+    },
+    {
       "name": "Baguette",
       "repository": "kittycrow-kittyx/baguette",
       "path": "baguette",

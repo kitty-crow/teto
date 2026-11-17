@@ -16,3 +16,12 @@ test "$(git -C baguette/vendor/bake rev-parse HEAD)" = "$pin"
 git -C baguette/vendor/bake diff --quiet
 git -C baguette/vendor/bake diff --cached --quiet
 printf 'bake %s\n' "$pin"
+python3 - <<'PY'
+import json, subprocess
+from pathlib import Path
+dependencies = json.loads(Path("project.dependencies.json").read_text())["dependencies"]
+for item in dependencies:
+    actual = subprocess.check_output(["git", "-C", item["path"], "rev-parse", "HEAD"], text=True).strip()
+    if actual != item["commit"]:
+        raise SystemExit(f'Pin mismatch: {item["name"]}: {actual} != {item["commit"]}')
+PY
