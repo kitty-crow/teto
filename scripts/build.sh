@@ -3,9 +3,11 @@ set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 sha256sum -c SHA256SUMS
 test -x node_modules/.bin/wasm-opt
-mkdir -p dist/teto
+mkdir -p dist/teto build
 for variant in teto teto-threads; do
-  nice -n 10 node_modules/.bin/wasm-opt "src/$variant.wat" \
+  case "$variant" in teto) source=baseline ;; teto-threads) source=threaded ;; esac
+  node scripts/link-wat.mjs "src/$source/layout.json" "build/$variant.wat"
+  nice -n 10 node_modules/.bin/wasm-opt "build/$variant.wat" \
     -O3 --all-features --strip-debug -o "dist/teto/$variant.wasm"
 done
 node --input-type=module <<'NODE'

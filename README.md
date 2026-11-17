@@ -1,6 +1,6 @@
 # Teto
 
-Teto is the platform-independent WebAssembly kernel generated from Thistle through Bake and Baguette. The committed sources are WebAssembly text (WAT), not a separate implementation. No compiled binaries or platform adapters are tracked.
+Teto is the platform-independent WebAssembly kernel generated from Thistle through Bake and Baguette. The committed sources are modular WebAssembly text (WAT), not a separate implementation. No compiled binaries or platform adapters are tracked.
 
 ## Build
 
@@ -9,7 +9,7 @@ npm install --package-lock=false
 npm run build
 ```
 
-The build assembles the committed WAT into local baseline and threaded WASM under `dist/teto/` without the generator submodules. The generated ABI declaration and provenance manifest accompany the binary output.
+The build links the committed source modules and assembles the WAT into local baseline and threaded WASM under `dist/teto/` without the generator submodules. The generated ABI declaration and provenance manifest accompany the binary output.
 
 ## Regeneration
 

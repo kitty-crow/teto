@@ -24,9 +24,17 @@ cfg.memory.initialPages = THISTLE_WASM_INITIAL_PAGES;
 cfg.memory.maximumPages = THISTLE_WASM_MAXIMUM_PAGES;
 await Bun.write("build/teto-production.json", JSON.stringify(cfg, null, 2) + "\n");
 ' "$(git -C thistle rev-parse HEAD)"
-nice -n 10 bun baguette/src/compiler.ts --config build/teto-production.json
+nice -n 10 bun baguette/src/compiler.ts --config build/teto-production.json --emit-modular-wat
+for variant in teto teto-threads; do
+  test -s "build/teto-generated/$variant/layout.json"
+  test -d "build/teto-generated/$variant/core"
+  test -d "build/teto-generated/$variant/native"
+  test -d "build/teto-generated/$variant/vm"
+done
+rm -rf src
 mkdir -p src abi
-cp build/teto-generated/teto.wat build/teto-generated/teto-threads.wat src/
+cp -R build/teto-generated/teto src/baseline
+cp -R build/teto-generated/teto-threads src/threaded
 cp build/reference/host-interface.d.ts abi/
 python3 - <<'PY'
 import json, subprocess
@@ -47,9 +55,10 @@ manifest["toolchain"] = {name: subprocess.check_output(["git", "-C", path, "rev-
                          for name, path in [("Thistle", "thistle"), ("Bake", "baguette/vendor/bake"), ("Baguette", "baguette")]}
 for name, item in manifest["variants"].items():
     item["file"] = "dist/teto/" + name
-manifest["proof"]["generatedWAT"] = ["src/teto.wat", "src/teto-threads.wat"]
+manifest["proof"]["generatedWAT"] = sorted(str(path) for path in Path("src").rglob("*.wat"))
+manifest["proof"]["modularWAT"] = {"teto": "src/baseline/layout.json", "teto-threads": "src/threaded/layout.json"}
 Path("teto.manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 PY
-sha256sum src/teto.wat src/teto-threads.wat abi/host-interface.d.ts teto.manifest.json > SHA256SUMS
+{ find src abi -type f; printf "%s\n" teto.manifest.json; } | LC_ALL=C sort | xargs sha256sum > SHA256SUMS
 # The independent WAT build is required to reproduce the reference binary.
 bash scripts/build.sh

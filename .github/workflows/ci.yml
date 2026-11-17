@@ -10,6 +10,8 @@ permissions:
 jobs:
   source:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,12 +32,23 @@ jobs:
             teto.manifest.json
             SHA256SUMS
           if-no-files-found: error
+      - name: Commit initial modular snapshot
+        if: github.event_name == 'push' && github.ref == 'refs/heads/refactor/modular-wat'
+        run: |
+          git add -A -- src abi teto.manifest.json SHA256SUMS
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'build: regenerate modular WAT source from pinned Baguette'
+            git push origin HEAD:refs/heads/refactor/modular-wat
+          fi
       - name: Check generated source is committed and no binaries are tracked
         run: |
           git add -A -- src abi teto.manifest.json SHA256SUMS
           git diff --cached --exit-code
           test -z "$(git ls-files -- dist '*.wasm' '*.o' '*.a' '*.so' '*.img' '*.elf' '*.bin')"
   compile:
+    if: github.event_name != 'push' || github.ref != 'refs/heads/refactor/modular-wat'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
