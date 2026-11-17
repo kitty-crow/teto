@@ -1,52 +1,47 @@
 name: CI
-
 on:
   push:
-    branches: [main]
+    branches: [main, 'refactor/**']
   pull_request:
-
+    branches: [main]
+  workflow_dispatch:
 permissions:
   contents: read
-
 jobs:
-  test:
+  source:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-
       - uses: oven-sh/setup-bun@v2
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-
-      - name: Install
+      - run: npm install --package-lock=false
+      - name: Regenerate and prove WAT reproduces production binaries
+        run: bash scripts/regenerate.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: teto-generated-source
+          path: |
+            src/
+            abi/
+            teto.manifest.json
+            SHA256SUMS
+          if-no-files-found: error
+      - name: Check generated source is committed and no binaries are tracked
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-
-      - name: Check canonical Thistle source and Teto production provenance
-        env:
-          # Build the merged canonical Thistle kernel from main.
-          THISTLE_REF: main
-        run: npm test
-      - name: Verify immutable Thistle SHA fetch and exact generated source
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          SHA="$(cat build/thistle-source.sha)"
-          THISTLE_REF="$SHA" bash scripts/ci/fetch-thistle-source.sh
-          [[ "$(cat build/thistle-source.sha)" == "$SHA" ]]
-          node scripts/ci/stage-thistle-native.mjs --check
-      - name: Require successful canonical Thistle native-kernel validation
-        env:
-          THISTLE_REF: main
-        run: |
-          if [ ! -f build/thistle-source.sha ]; then bash scripts/ci/fetch-thistle-source.sh; fi
-          bun scripts/ci/probe-thistle-kernel.ts
-
+          git add -A -- src abi teto.manifest.json SHA256SUMS
+          git diff --cached --exit-code
+          test -z "$(git ls-files -- dist '*.wasm' '*.o' '*.a' '*.so' '*.img' '*.elf' '*.bin')"
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --package-lock=false
+      - name: Compile committed WAT without Thistle, Bake or Baguette
+        run: bash scripts/build.sh

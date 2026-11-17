@@ -1,1 +1,0 @@
-Production WASM must be generated from the five entry points in `src/native/` of the current checked-out Thistle revision. This configuration is a declaration only; the real build script fetches Thistle, injects its resolved SHA and validates its 512 MiB memory policy.
