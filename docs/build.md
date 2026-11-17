@@ -1,33 +1,7 @@
 # Building Teto
 
-`npm run build` fetches Thistle at `THISTLE_REF` (default `main`),
-records its exact Git SHA and stages copies for TypeScript host imports.
-It then compiles the host and reuses that same Thistle checkout to build
-the native kernel.
+`npm run build` requires Node.js and the installed Binaryen package. It assembles the committed WAT and optimises it locally. No compiler submodules are needed. `dist/teto/` is ignored by Git.
 
-`scripts/ci/build-thistle-kernel.ts` creates a production Baguette
-configuration using Thistle's `src/native/` entry points and memory
-policy. Bake lowers the Thistle source; Baguette compiles the baseline
-and threaded WebAssembly modules and writes the provenance manifest.
-The normal build checks deterministic output.
+`npm run regenerate` requires Bun and the recursively initialised pinned submodules. The generator obtains the memory policy from the canonical Thistle source. Baguette invokes its pinned Bake dependency; its emitted WAT and ABI declarations are copied unchanged into the source tree. The generated manifest records exact revisions and reference checksums.
 
-Useful commands:
-
-    npm run build
-    npm test
-    npm run teto:validate
-    npm run test:provenance
-    npm run teto:build:fast
-
-For a reproducible build, select a full Thistle commit SHA:
-
-    THISTLE_REF=<40-character-Thistle-SHA> npm run build
-
-`test:provenance` checks the generated manifest after a build.
-`teto:build:fast` skips the determinism check for local iteration.
-Release and compatibility builds should use the normal build path.
-
-`baguette.config.json` provides the base configuration; the build
-script generates the authoritative, SHA-pinned production configuration
-inside the fetched Thistle checkout. The example config is illustrative,
-not a substitute for that build script.
+GitHub Actions regenerates and verifies the source and assembles it independently. Dependency updates use an exact Git revision and a reviewable source update. Browser and other host adapters belong to consumers.

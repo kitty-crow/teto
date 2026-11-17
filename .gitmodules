@@ -1,9 +1,6 @@
-[submodule "kittyx"]
-	path = kittyx
-	url = https://github.com/kitty-crow/kittyx.git
-[submodule "src/asm"]
-	path = src/asm
-	url = https://github.com/kitty-crow/thistle-asm.git
+[submodule "thistle"]
+	path = thistle
+	url = https://github.com/kittycrow-kittyx/thistle.git
 [submodule "baguette"]
 	path = baguette
-	url = https://github.com/kitty-crow/baguette.git
+	url = https://github.com/kittycrow-kittyx/baguette.git

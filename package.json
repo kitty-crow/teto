@@ -3,18 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "The Baguette-generated WebAssembly fork of the Thistle kernel.",
+  "description": "Generated platform-independent WebAssembly text kernel.",
   "scripts": {
-    "build": "npm run build:host && THISTLE_USE_STAGED=1 npm run teto:build",
-    "build:host": "npm run stage:native && node scripts/ci/clean-host-build.mjs && tsc -p tsconfig.json",
-    "teto:build": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts",
-    "teto:validate": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts --validate-only",
-    "teto:build:fast": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/build-thistle-kernel.ts --skip-determinism-check",
-    "test": "npm run build:host && THISTLE_USE_STAGED=1 npm run test:thistle-source && bun scripts/ci/build-thistle-kernel.ts && node scripts/ci/stage-thistle-native.mjs --check && npm run test:provenance",
-    "check": "npm test",
-    "test:thistle-source": "bash scripts/ci/fetch-thistle-source.sh && bun scripts/ci/test-thistle-source.ts",
-    "test:provenance": "bun scripts/ci/verify-teto-provenance.ts",
-    "stage:native": "bash scripts/ci/fetch-thistle-source.sh && node scripts/ci/stage-thistle-native.mjs"
+    "build": "bash scripts/build.sh",
+    "teto:build": "bash scripts/build.sh",
+    "regenerate": "bash scripts/regenerate.sh",
+    "test": "bash scripts/build.sh",
+    "check": "bash scripts/build.sh"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
@@ -22,7 +17,6 @@
     "assemblyscript": "0.28.19",
     "binaryen": "130.0.0-nightly.20260609",
     "bun": "1.3.14",
-    "esbuild": "0.28.1",
     "typescript": "^5.9.2"
   },
   "engines": {
