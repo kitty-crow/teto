@@ -1,5 +1,7 @@
 # Architecture
 
-Thistle → Bake → Baguette → generated WAT.
+Thistle → Bake → Baguette → modular WAT.
 
-Teto tracks the generated baseline and threaded WebAssembly text, the generated host ABI declaration, build configuration and provenance. Binaries are local build outputs. Host runtimes are outside the kernel tree.
+The baseline and threaded variants each mirror the generated input's `core/`, `native/` and `vm/` directories. Baguette generates `module.wat` for module-wide declarations, `runtime.wat` for backend helpers, and `layout.json` for link order. Type-only and inlined modules retain their source positions but need not contain executable declarations.
+
+Teto links the source fragments into a temporary WAT module and compiles that module locally. Generated source, ABI declarations and provenance are tracked; linked WAT and binaries are ignored.
