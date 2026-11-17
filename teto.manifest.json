@@ -260,9 +260,49 @@
     "deterministicRebuildVerified": true,
     "nativeInstantiationVerified": true,
     "generatedWAT": [
-      "src/teto.wat",
-      "src/teto-threads.wat"
-    ]
+      "src/baseline/core/native-types.wat",
+      "src/baseline/core/rv64-arithmetic.wat",
+      "src/baseline/core/rv64-branch.wat",
+      "src/baseline/core/rv64-fclass.wat",
+      "src/baseline/core/rv64-immediate-op.wat",
+      "src/baseline/core/rv64-numbers.wat",
+      "src/baseline/core/rv64-register.wat",
+      "src/baseline/core/rv64-word.wat",
+      "src/baseline/module.wat",
+      "src/baseline/native/abi.wat",
+      "src/baseline/native/kernel.wat",
+      "src/baseline/native/memory.wat",
+      "src/baseline/native/start.wat",
+      "src/baseline/native/thx.wat",
+      "src/baseline/native/types.wat",
+      "src/baseline/native/vfs.wat",
+      "src/baseline/native/word.wat",
+      "src/baseline/runtime.wat",
+      "src/baseline/vm/rv64-immediate.wat",
+      "src/threaded/core/native-types.wat",
+      "src/threaded/core/rv64-arithmetic.wat",
+      "src/threaded/core/rv64-branch.wat",
+      "src/threaded/core/rv64-fclass.wat",
+      "src/threaded/core/rv64-immediate-op.wat",
+      "src/threaded/core/rv64-numbers.wat",
+      "src/threaded/core/rv64-register.wat",
+      "src/threaded/core/rv64-word.wat",
+      "src/threaded/module.wat",
+      "src/threaded/native/abi.wat",
+      "src/threaded/native/kernel.wat",
+      "src/threaded/native/memory.wat",
+      "src/threaded/native/start.wat",
+      "src/threaded/native/thx.wat",
+      "src/threaded/native/types.wat",
+      "src/threaded/native/vfs.wat",
+      "src/threaded/native/word.wat",
+      "src/threaded/runtime.wat",
+      "src/threaded/vm/rv64-immediate.wat"
+    ],
+    "modularWAT": {
+      "teto": "src/baseline/layout.json",
+      "teto-threads": "src/threaded/layout.json"
+    }
   },
   "completeKernel": true,
   "productionKernel": "Thistle",
@@ -501,6 +541,6 @@
   "toolchain": {
     "Thistle": "19a571d6da85f63256041766d5200ad50e825423",
     "Bake": "f5a2d6076bfd87309f89485f8b291b45a8592af5",
-    "Baguette": "6fc531a1d169ca2edd3611f09335e8a812b7f081"
+    "Baguette": "1bac7a3309af4cda7e8b160af643f0a4e9e689fe"
   }
 }
