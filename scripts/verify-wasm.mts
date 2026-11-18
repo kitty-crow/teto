@@ -15,7 +15,15 @@ for (const variant of ["teto", "teto-threads"]) {
   assert.equal(createHash("sha256").update(bytes).digest("hex"), string(expected.sha256),
     "WAT assembly must reproduce the Baguette reference binary: " + name);
   const module = new WebAssembly.Module(bytes);
-  assert.deepEqual(WebAssembly.Module.imports(module), array(expected.imports));
+  // Runtimes may expose extra import type metadata. Compare the manifest's
+  // portable descriptor fields; the exact binary hash above still verifies
+  // the full import types, including memory limits and sharedness.
+  const actualImports = WebAssembly.Module.imports(module).map(({module, name, kind}) => ({module, name, kind}));
+  const expectedImports = array(expected.imports).map(value => {
+    const item = record(value);
+    return {module: string(item.module), name: string(item.name), kind: string(item.kind)};
+  });
+  assert.deepEqual(actualImports, expectedImports);
   assert.deepEqual(WebAssembly.Module.exports(module).map(e => e.name).sort(), array(expected.exports).map(string).sort());
   const memory = new WebAssembly.Memory({initial: integer(limits.initialPages),
     maximum: integer(limits.maximumPages), shared: boolean(expected.threaded)});
