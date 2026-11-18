@@ -1,17 +1,27 @@
 # Teto
 
-Teto is the platform-independent WebAssembly kernel generated from Thistle through Bake and Baguette. The committed sources are modular WebAssembly text (WAT), not a separate implementation. No compiled binaries or platform adapters are tracked.
+**TETO**: Teto Executes Thistle Optimally.
+
+Teto is a platform-independent WebAssembly kernel generated from
+Thistle. The repository contains modular WebAssembly text (WAT),
+ABI declarations and source provenance.
 
 ## Build
+
+Requires Node.js and npm.
 
 ```sh
 npm install --package-lock=false
 npm run build
 ```
 
-The build links the committed source modules and assembles the WAT into local baseline and threaded WASM under `dist/teto/` without the generator submodules. The generated ABI declaration and provenance manifest accompany the binary output.
+The build links the committed WAT modules and assembles baseline
+and threaded WebAssembly binaries under `dist/teto/`. Compiler
+submodules are not required for this build.
 
-## Regeneration
+## Source regeneration
+
+Requires Bun and the pinned generator dependencies.
 
 ```sh
 git submodule update --init --recursive
@@ -19,4 +29,14 @@ npm install --package-lock=false
 npm run regenerate
 ```
 
-GitHub Actions regenerates the WAT from pinned Thistle and Baguette revisions. Baguette pins Bake. It compares the resulting source against the repository and requires the standalone build to reproduce the reference binary. See [build instructions](docs/build.md).
+Thistle supplies the kernel source. Bake lowers that source and
+Baguette generates modular WAT. Baguette owns the Bake dependency.
+
+CI verifies the generated source and reference binary checksums.
+
+See [build instructions](docs/build.md) and
+[architecture](docs/architecture.md).
+
+## Licence
+
+[MIT](LICENSE).
