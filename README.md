@@ -8,7 +8,8 @@ ABI declarations and source provenance.
 
 ## Build
 
-Requires Node.js and npm.
+Requires Node.js and npm. The installed Bun dependency runs the typed
+build scripts directly; `tsc --noEmit` checks them without generating JavaScript.
 
 ```sh
 npm install --package-lock=false
@@ -17,7 +18,8 @@ npm run build
 
 The build links the committed WAT modules and assembles baseline
 and threaded WebAssembly binaries under `dist/teto/`. Compiler
-submodules are not required for this build.
+submodules are not required for this build. `bun run build` is also supported
+after installing the dependencies.
 
 ## Source regeneration
 
