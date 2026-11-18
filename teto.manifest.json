@@ -540,7 +540,7 @@
   },
   "toolchain": {
     "Thistle": "19a571d6da85f63256041766d5200ad50e825423",
-    "Bake": "f5a2d6076bfd87309f89485f8b291b45a8592af5",
-    "Baguette": "1bac7a3309af4cda7e8b160af643f0a4e9e689fe"
+    "Bake": "cae1e7b9547c8d865fd117ec629bfdc8dfdcca62",
+    "Baguette": "9f9f2df3611fb1bdca2827a5a1ff704c749f806a"
   }
 }
