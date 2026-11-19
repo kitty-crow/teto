@@ -20,6 +20,16 @@
       "fields": 0
     },
     {
+      "source": "native/memory.ts",
+      "file": "native/memory.wat",
+      "fields": 0
+    },
+    {
+      "source": "native/image-range.ts",
+      "file": "native/image-range.wat",
+      "fields": 0
+    },
+    {
       "source": "core/rv64-branch.ts",
       "file": "core/rv64-branch.wat",
       "fields": 1
@@ -52,7 +62,7 @@
     {
       "source": "core/rv64-register.ts",
       "file": "core/rv64-register.wat",
-      "fields": 2
+      "fields": 3
     },
     {
       "source": "core/rv64-fclass.ts",
@@ -60,8 +70,8 @@
       "fields": 1
     },
     {
-      "source": "native/memory.ts",
-      "file": "native/memory.wat",
+      "source": "core/rv64-decode.ts",
+      "file": "core/rv64-decode.wat",
       "fields": 0
     },
     {
@@ -72,17 +82,17 @@
     {
       "source": "native/vfs.ts",
       "file": "native/vfs.wat",
-      "fields": 19
+      "fields": 20
     },
     {
       "source": "native/kernel.ts",
       "file": "native/kernel.wat",
-      "fields": 82
+      "fields": 93
     },
     {
       "source": "native/thx.ts",
       "file": "native/thx.wat",
-      "fields": 6
+      "fields": 10
     },
     {
       "source": "native/start.ts",
@@ -99,12 +109,12 @@
     [
       "module.wat",
       47,
-      43
+      51
     ],
     [
       "module.wat",
-      90,
-      51
+      98,
+      43
     ],
     [
       "module.wat",
@@ -124,17 +134,17 @@
     [
       "module.wat",
       294,
-      55
+      51
     ],
     [
       "module.wat",
-      349,
+      345,
       63
     ],
     [
       "module.wat",
-      412,
-      51
+      408,
+      55
     ],
     [
       "module.wat",
@@ -149,22 +159,22 @@
     [
       "module.wat",
       570,
-      56
-    ],
-    [
-      "module.wat",
-      626,
       48
     ],
     [
       "module.wat",
-      674,
+      618,
       56
     ],
     [
       "module.wat",
-      730,
+      674,
       52
+    ],
+    [
+      "module.wat",
+      726,
+      56
     ],
     [
       "module.wat",
@@ -174,606 +184,606 @@
     [
       "module.wat",
       842,
-      56
+      52
     ],
     [
       "module.wat",
-      898,
-      52
+      894,
+      56
     ],
     [
       "module.wat",
       950,
+      52
+    ],
+    [
+      "module.wat",
+      1002,
       60
     ],
     [
       "module.wat",
-      1010,
+      1062,
       56
-    ],
-    [
-      "module.wat",
-      1066,
-      52
     ],
     [
       "module.wat",
       1118,
-      39
-    ],
-    [
-      "module.wat",
-      1157,
-      52
-    ],
-    [
-      "module.wat",
-      1209,
-      51
-    ],
-    [
-      "module.wat",
-      1260,
       60
     ],
     [
       "module.wat",
-      1320,
-      76
-    ],
-    [
-      "module.wat",
-      1396,
-      68
-    ],
-    [
-      "module.wat",
-      1464,
-      48
-    ],
-    [
-      "module.wat",
-      1512,
-      32
-    ],
-    [
-      "module.wat",
-      1544,
-      60
-    ],
-    [
-      "module.wat",
-      1604,
-      68
-    ],
-    [
-      "module.wat",
-      1672,
-      60
-    ],
-    [
-      "module.wat",
-      1732,
-      60
-    ],
-    [
-      "module.wat",
-      1792,
-      80
-    ],
-    [
-      "module.wat",
-      1872,
-      52
-    ],
-    [
-      "module.wat",
-      1924,
-      48
-    ],
-    [
-      "module.wat",
-      1972,
-      68
-    ],
-    [
-      "module.wat",
-      2040,
+      1178,
       56
     ],
     [
       "module.wat",
-      2096,
+      1234,
+      52
+    ],
+    [
+      "module.wat",
+      1286,
+      39
+    ],
+    [
+      "module.wat",
+      1325,
+      32
+    ],
+    [
+      "module.wat",
+      1357,
+      39
+    ],
+    [
+      "module.wat",
+      1396,
+      60
+    ],
+    [
+      "module.wat",
+      1456,
+      60
+    ],
+    [
+      "module.wat",
+      1516,
+      76
+    ],
+    [
+      "module.wat",
+      1592,
       68
     ],
     [
       "module.wat",
-      2164,
-      64
-    ],
-    [
-      "module.wat",
-      2228,
+      1660,
       48
     ],
     [
       "module.wat",
-      2276,
+      1708,
+      48
+    ],
+    [
+      "module.wat",
+      1756,
+      60
+    ],
+    [
+      "module.wat",
+      1816,
+      80
+    ],
+    [
+      "module.wat",
+      1896,
+      52
+    ],
+    [
+      "module.wat",
+      1948,
+      56
+    ],
+    [
+      "module.wat",
+      2004,
+      43
+    ],
+    [
+      "module.wat",
+      2047,
+      60
+    ],
+    [
+      "module.wat",
+      2107,
+      60
+    ],
+    [
+      "module.wat",
+      2167,
+      48
+    ],
+    [
+      "module.wat",
+      2215,
       68
     ],
     [
       "module.wat",
-      2344,
+      2283,
       76
     ],
     [
       "module.wat",
-      2420,
+      2359,
       76
     ],
     [
       "module.wat",
-      2496,
+      2435,
       76
     ],
     [
       "module.wat",
-      2572,
+      2511,
       76
     ],
     [
       "module.wat",
-      2648,
+      2587,
       76
     ],
     [
       "module.wat",
-      2724,
+      2663,
       84
     ],
     [
       "module.wat",
-      2808,
+      2747,
       86
     ],
     [
       "module.wat",
-      2894,
+      2833,
       82
     ],
     [
       "module.wat",
-      2976,
+      2915,
       98
     ],
     [
       "module.wat",
-      3074,
+      3013,
       80
     ],
     [
       "module.wat",
-      3154,
+      3093,
       84
     ],
     [
       "module.wat",
-      3238,
+      3177,
       86
     ],
     [
       "module.wat",
-      3324,
+      3263,
       90
     ],
     [
       "module.wat",
-      3414,
+      3353,
       90
     ],
     [
       "module.wat",
-      3504,
+      3443,
       90
     ],
     [
       "module.wat",
-      3594,
+      3533,
       92
     ],
     [
       "module.wat",
-      3686,
+      3625,
       92
     ],
     [
       "module.wat",
-      3778,
+      3717,
       88
     ],
     [
       "module.wat",
-      3866,
+      3805,
       88
     ],
     [
       "module.wat",
-      3954,
+      3893,
       82
     ],
     [
       "module.wat",
-      4036,
+      3975,
       82
     ],
     [
       "module.wat",
-      4118,
+      4057,
       76
     ],
     [
       "module.wat",
-      4194,
+      4133,
       74
     ],
     [
       "module.wat",
-      4268,
+      4207,
       70
     ],
     [
       "module.wat",
-      4338,
+      4277,
       82
     ],
     [
       "module.wat",
-      4420,
+      4359,
       84
     ],
     [
       "module.wat",
-      4504,
+      4443,
       70
     ],
     [
       "module.wat",
-      4574,
+      4513,
       78
     ],
     [
       "module.wat",
-      4652,
+      4591,
       70
     ],
     [
       "module.wat",
-      4722,
+      4661,
       68
     ],
     [
       "module.wat",
-      4790,
+      4729,
       68
     ],
     [
       "module.wat",
-      4858,
+      4797,
       72
     ],
     [
       "module.wat",
-      4930,
+      4869,
       74
     ],
     [
       "module.wat",
-      5004,
+      4943,
       76
     ],
     [
       "module.wat",
-      5080,
+      5019,
       74
     ],
     [
       "module.wat",
-      5154,
+      5093,
       78
     ],
     [
       "module.wat",
-      5232,
+      5171,
       70
     ],
     [
       "module.wat",
-      5302,
+      5241,
       76
     ],
     [
       "module.wat",
-      5378,
+      5317,
       78
     ],
     [
       "module.wat",
-      5456,
+      5395,
       72
     ],
     [
       "module.wat",
-      5528,
+      5467,
       78
     ],
     [
       "module.wat",
-      5606,
+      5545,
       86
     ],
     [
       "module.wat",
-      5692,
+      5631,
       80
     ],
     [
       "module.wat",
-      5772,
+      5711,
       78
     ],
     [
       "module.wat",
-      5850,
+      5789,
       78
     ],
     [
       "module.wat",
-      5928,
+      5867,
       72
     ],
     [
       "module.wat",
-      6000,
+      5939,
       84
     ],
     [
       "module.wat",
-      6084,
+      6023,
       84
     ],
     [
       "module.wat",
-      6168,
+      6107,
       86
     ],
     [
       "module.wat",
-      6254,
+      6193,
       84
     ],
     [
       "module.wat",
-      6338,
+      6277,
       86
     ],
     [
       "module.wat",
-      6424,
+      6363,
       88
     ],
     [
       "module.wat",
-      6512,
+      6451,
       80
     ],
     [
       "module.wat",
-      6592,
-      92
+      6531,
+      82
     ],
     [
       "module.wat",
-      6684,
+      6613,
       80
     ],
     [
       "module.wat",
-      6764,
+      6693,
       84
     ],
     [
       "module.wat",
-      6848,
+      6777,
       84
     ],
     [
       "module.wat",
-      6932,
+      6861,
       86
     ],
     [
       "module.wat",
-      7018,
+      6947,
       88
     ],
     [
       "module.wat",
-      7106,
+      7035,
       74
     ],
     [
       "module.wat",
-      7180,
+      7109,
       94
     ],
     [
       "module.wat",
-      7274,
+      7203,
       86
     ],
     [
       "module.wat",
-      7360,
+      7289,
       90
     ],
     [
       "module.wat",
-      7450,
+      7379,
       82
     ],
     [
       "module.wat",
-      7532,
+      7461,
       96
     ],
     [
       "module.wat",
-      7628,
+      7557,
       72
     ],
     [
       "module.wat",
-      7700,
+      7629,
       72
     ],
     [
       "module.wat",
-      7772,
+      7701,
       72
     ],
     [
       "module.wat",
-      7844,
+      7773,
       72
     ],
     [
       "module.wat",
-      7916,
+      7845,
       68
     ],
     [
       "module.wat",
-      7984,
+      7913,
       74
     ],
     [
       "module.wat",
-      8058,
+      7987,
       76
     ],
     [
       "module.wat",
-      8134,
+      8063,
       76
     ],
     [
       "module.wat",
-      8210,
+      8139,
       82
     ],
     [
       "module.wat",
-      8292,
+      8221,
       84
     ],
     [
       "module.wat",
-      8376,
+      8305,
       78
     ],
     [
       "module.wat",
-      8454,
+      8383,
       76
     ],
     [
       "module.wat",
-      8530,
+      8459,
       80
     ],
     [
       "module.wat",
-      8610,
+      8539,
       74
     ],
     [
       "module.wat",
-      8684,
+      8613,
       76
     ],
     [
       "module.wat",
-      8760,
+      8689,
       80
     ],
     [
       "module.wat",
-      8840,
+      8769,
       78
     ],
     [
       "module.wat",
-      8918,
+      8847,
       80
     ],
     [
       "module.wat",
-      8998,
+      8927,
       74
     ],
     [
       "module.wat",
-      9072,
+      9001,
       82
     ],
     [
       "module.wat",
-      9154,
+      9083,
       72
     ],
     [
       "module.wat",
-      9226,
+      9155,
       78
     ],
     [
       "module.wat",
-      9304,
+      9233,
       80
     ],
     [
       "module.wat",
-      9384,
+      9313,
       90
     ],
     [
       "module.wat",
-      9474,
+      9403,
       80
     ],
     [
       "module.wat",
-      9554,
+      9483,
       82
     ],
     [
       "module.wat",
-      9636,
+      9565,
       76
     ],
     [
       "module.wat",
-      9712,
+      9641,
       72
     ],
     [
       "module.wat",
-      9784,
+      9713,
       70
     ],
     [
       "module.wat",
-      9854,
+      9783,
       90
     ],
     [
@@ -792,119 +802,134 @@
       1481
     ],
     [
+      "native/thx.wat",
+      0,
+      5512
+    ],
+    [
       "native/kernel.wat",
       8062,
-      4019
+      4457
     ],
     [
       "native/thx.wat",
-      0,
-      4776
+      5512,
+      4713
     ],
     [
       "native/kernel.wat",
-      12081,
-      1984
+      12519,
+      760
     ],
     [
       "native/kernel.wat",
-      14065,
+      13279,
       839
     ],
     [
       "native/kernel.wat",
-      14904,
-      1474
+      14118,
+      1544
     ],
     [
       "native/kernel.wat",
-      16378,
-      1371
+      15662,
+      1407
     ],
     [
       "native/kernel.wat",
-      17749,
-      2114
+      17069,
+      2085
     ],
     [
       "native/thx.wat",
-      4776,
-      16249
+      10225,
+      10437
     ],
     [
       "native/kernel.wat",
-      19863,
-      5898
+      19154,
+      5942
     ],
     [
       "native/vfs.wat",
       0,
-      702
+      711
     ],
     [
       "native/vfs.wat",
-      702,
+      711,
       668
     ],
     [
-      "native/kernel.wat",
-      25761,
-      1280
+      "native/thx.wat",
+      20662,
+      11391
     ],
     [
       "native/kernel.wat",
-      27041,
+      25096,
+      2276
+    ],
+    [
+      "native/kernel.wat",
+      27372,
       783
     ],
     [
       "native/kernel.wat",
-      27824,
+      28155,
       1121
     ],
     [
       "native/kernel.wat",
-      28945,
+      29276,
       1179
     ],
     [
       "native/vfs.wat",
-      1370,
-      1628
+      1379,
+      1906
     ],
     [
       "native/kernel.wat",
-      30124,
+      30455,
       2319
     ],
     [
       "native/kernel.wat",
-      32443,
-      7547
+      32774,
+      7546
     ],
     [
       "native/kernel.wat",
-      39990,
-      4666
+      40320,
+      2914
     ],
     [
       "native/kernel.wat",
-      44656,
+      43234,
+      4675
+    ],
+    [
+      "native/kernel.wat",
+      47909,
       2000
     ],
     [
       "native/kernel.wat",
-      46656,
+      49909,
       2423
     ],
     [
       "core/rv64-word.wat",
       0,
-      3214
+      3818
     ],
     [
       "core/rv64-register.wat",
       0,
-      5366
+      1375
     ],
     [
       "core/rv64-immediate-op.wat",
@@ -914,361 +939,371 @@
     [
       "core/rv64-fclass.wat",
       0,
-      1477
+      1356
     ],
     [
       "native/thx.wat",
-      21025,
+      32053,
       1331
     ],
     [
       "native/thx.wat",
-      22356,
-      9363
+      33384,
+      4460
     ],
     [
       "native/kernel.wat",
-      49079,
-      2392
+      52332,
+      5945
     ],
     [
       "native/kernel.wat",
-      51471,
+      58277,
+      2494
+    ],
+    [
+      "native/kernel.wat",
+      60771,
+      979
+    ],
+    [
+      "native/kernel.wat",
+      61750,
       2479
     ],
     [
       "native/kernel.wat",
-      53950,
-      13648
+      64229,
+      14308
     ],
     [
       "native/vfs.wat",
-      2998,
-      7543
+      3285,
+      7846
     ],
     [
       "native/vfs.wat",
-      10541,
-      3573
+      11131,
+      3583
     ],
     [
       "native/vfs.wat",
-      14114,
+      14714,
       1504
     ],
     [
       "native/kernel.wat",
-      67598,
+      78537,
       675
     ],
     [
       "native/vfs.wat",
-      15618,
+      16218,
       571
     ],
     [
       "native/vfs.wat",
-      16189,
+      16789,
       204
     ],
     [
       "native/vfs.wat",
-      16393,
+      16993,
       574
     ],
     [
       "native/vfs.wat",
-      16967,
+      17567,
       572
     ],
     [
       "native/vfs.wat",
-      17539,
+      18139,
       2745
     ],
     [
       "native/vfs.wat",
-      20284,
+      20884,
       130
     ],
     [
       "native/vfs.wat",
-      20414,
+      21014,
       405
     ],
     [
       "native/vfs.wat",
-      20819,
+      21419,
       210
     ],
     [
       "native/vfs.wat",
-      21029,
+      21629,
       572
     ],
     [
       "native/vfs.wat",
-      21601,
+      22201,
       577
     ],
     [
       "native/vfs.wat",
-      22178,
+      22778,
       211
     ],
     [
       "native/kernel.wat",
-      68273,
+      79212,
       286
     ],
     [
       "native/kernel.wat",
-      68559,
+      79498,
       918
     ],
     [
       "native/kernel.wat",
-      69477,
-      2914
+      80416,
+      2722
     ],
     [
       "native/kernel.wat",
-      72391,
-      2614
+      83138,
+      995
     ],
     [
       "native/kernel.wat",
-      75005,
-      963
-    ],
-    [
-      "native/kernel.wat",
-      75968,
+      84133,
       1290
     ],
     [
       "native/kernel.wat",
-      77258,
-      1498
+      85423,
+      1638
     ],
     [
       "native/kernel.wat",
-      78756,
+      87061,
       1154
     ],
     [
       "native/kernel.wat",
-      79910,
+      88215,
       2493
     ],
     [
       "native/kernel.wat",
-      82403,
+      90708,
       1220
     ],
     [
       "native/kernel.wat",
-      83623,
+      91928,
       607
     ],
     [
       "native/kernel.wat",
-      84230,
+      92535,
       795
     ],
     [
       "native/kernel.wat",
-      85025,
+      93330,
       787
     ],
     [
       "native/kernel.wat",
-      85812,
+      94117,
       603
     ],
     [
       "native/kernel.wat",
-      86415,
+      94720,
       782
     ],
     [
       "native/kernel.wat",
-      87197,
+      95502,
       5395
     ],
     [
       "native/kernel.wat",
-      92592,
+      100897,
       312
     ],
     [
       "native/kernel.wat",
-      92904,
-      3992
+      101209,
+      1540
     ],
     [
       "native/vfs.wat",
-      22389,
-      15616
+      22989,
+      4473
     ],
     [
       "native/thx.wat",
-      31719,
-      17491
+      37844,
+      4263
     ],
     [
       "native/kernel.wat",
-      96896,
+      102749,
       237
     ],
     [
       "native/kernel.wat",
-      97133,
-      3978
+      102986,
+      213
     ],
     [
       "native/kernel.wat",
-      101111,
+      103199,
       1391
     ],
     [
       "native/kernel.wat",
-      102502,
+      104590,
       1133
     ],
     [
       "native/kernel.wat",
-      103635,
+      105723,
+      525
+    ],
+    [
+      "native/kernel.wat",
+      106248,
       280
     ],
     [
       "native/kernel.wat",
-      103915,
+      106528,
       277
     ],
     [
       "native/kernel.wat",
-      104192,
+      106805,
       282
     ],
     [
       "native/kernel.wat",
-      104474,
+      107087,
       278
     ],
     [
       "native/kernel.wat",
-      104752,
+      107365,
       281
     ],
     [
       "native/kernel.wat",
-      105033,
+      107646,
       277
     ],
     [
       "native/kernel.wat",
-      105310,
+      107923,
       283
     ],
     [
       "native/kernel.wat",
-      105593,
+      108206,
       282
     ],
     [
       "native/kernel.wat",
-      105875,
+      108488,
       455
     ],
     [
       "native/kernel.wat",
-      106330,
+      108943,
       463
     ],
     [
       "native/kernel.wat",
-      106793,
+      109406,
       418
     ],
     [
       "native/kernel.wat",
-      107211,
+      109824,
       273
     ],
     [
       "native/kernel.wat",
-      107484,
+      110097,
       425
     ],
     [
       "native/kernel.wat",
-      107909,
+      110522,
       1316
     ],
     [
       "native/kernel.wat",
-      109225,
+      111838,
       281
     ],
     [
       "native/kernel.wat",
-      109506,
+      112119,
       444
     ],
     [
       "native/kernel.wat",
-      109950,
+      112563,
       373
     ],
     [
       "native/kernel.wat",
-      110323,
+      112936,
       280
     ],
     [
       "native/kernel.wat",
-      110603,
+      113216,
       597
     ],
     [
       "native/kernel.wat",
-      111200,
+      113813,
       330
     ],
     [
       "native/kernel.wat",
-      111530,
+      114143,
       1488
     ],
     [
       "native/kernel.wat",
-      113018,
+      115631,
       790
     ],
     [
       "native/kernel.wat",
-      113808,
+      116421,
       778
     ],
     [
       "native/kernel.wat",
-      114586,
+      117199,
       788
     ],
     [
       "native/kernel.wat",
-      115374,
+      117987,
       1345
     ],
     [
       "native/start.wat",
       0,
-      13033
+      13047
     ],
     [
       "native/kernel.wat",
-      116719,
+      119332,
       1116
     ],
     [
@@ -1283,12 +1318,12 @@
     ],
     [
       "core/rv64-word.wat",
-      3214,
+      3818,
       732
     ],
     [
       "core/rv64-register.wat",
-      5366,
+      1375,
       403
     ],
     [
@@ -1308,12 +1343,12 @@
     ],
     [
       "core/rv64-word.wat",
-      3946,
+      4550,
       923
     ],
     [
       "core/rv64-word.wat",
-      4869,
+      5473,
       459
     ],
     [
@@ -1368,68 +1403,128 @@
     ],
     [
       "native/thx.wat",
-      49210,
-      16226
+      42107,
+      6662
+    ],
+    [
+      "native/thx.wat",
+      48769,
+      3702
+    ],
+    [
+      "native/thx.wat",
+      52471,
+      15650
     ],
     [
       "native/kernel.wat",
-      117835,
-      38853
+      120448,
+      4074
     ],
     [
       "native/kernel.wat",
-      156688,
+      124522,
+      4004
+    ],
+    [
+      "native/kernel.wat",
+      128526,
       4185
     ],
     [
       "native/kernel.wat",
-      160873,
+      132711,
       4185
     ],
     [
       "native/kernel.wat",
-      165058,
-      8252
+      136896,
+      9021
     ],
     [
       "native/kernel.wat",
-      173310,
-      9808
+      145917,
+      3587
     ],
     [
       "native/kernel.wat",
-      183118,
-      25055
+      149504,
+      9427
     ],
     [
       "native/kernel.wat",
-      208173,
-      28604
+      158931,
+      14979
     ],
     [
       "native/kernel.wat",
-      236777,
-      3418
+      173910,
+      6619
     ],
     [
       "native/kernel.wat",
-      240195,
-      18443
+      180529,
+      21556
     ],
     [
       "native/kernel.wat",
-      258638,
-      36055
+      202085,
+      19372
     ],
     [
       "native/kernel.wat",
-      294693,
-      5115
+      221457,
+      30386
+    ],
+    [
+      "native/kernel.wat",
+      251843,
+      29567
+    ],
+    [
+      "native/kernel.wat",
+      281410,
+      3430
+    ],
+    [
+      "native/kernel.wat",
+      284840,
+      5985
+    ],
+    [
+      "native/kernel.wat",
+      290825,
+      10378
+    ],
+    [
+      "native/kernel.wat",
+      301203,
+      7973
+    ],
+    [
+      "native/kernel.wat",
+      309176,
+      3290
+    ],
+    [
+      "native/kernel.wat",
+      312466,
+      6453
+    ],
+    [
+      "core/rv64-register.wat",
+      1778,
+      4001
     ],
     [
       "native/vfs.wat",
-      38005,
-      505
+      27462,
+      4418
+    ],
+    [
+      "native/vfs.wat",
+      31880,
+      7372
     ]
   ]
 }

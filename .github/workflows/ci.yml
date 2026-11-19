@@ -1,4 +1,4 @@
-name: CI
+name: Kernel source and build validation
 on:
   push:
     branches: [main, 'refactor/**']
@@ -9,19 +9,21 @@ permissions:
   contents: read
 jobs:
   source:
+    name: Transpile source
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
       - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
       - run: npm install --package-lock=false
-      - name: Regenerate and prove WAT reproduces production binaries
+      - name: Transpile source from pinned toolchain
         run: bash scripts/regenerate.sh
-      - uses: actions/upload-artifact@v4
+      - name: Upload generated source
+        uses: actions/upload-artifact@v6
         with:
           name: teto-generated-source
           path: |
@@ -30,18 +32,29 @@ jobs:
             teto.manifest.json
             SHA256SUMS
           if-no-files-found: error
-      - name: Check generated source is committed and no binaries are tracked
+  compile:
+    name: Compile
+    needs: source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Remove old generated source
+        run: rm -rf src abi
+      - name: Download generated source
+        uses: actions/download-artifact@v7
+        with:
+          name: teto-generated-source
+          path: .
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm install --package-lock=false
+      - name: Verify generated source
+        run: sha256sum -c SHA256SUMS
+      - name: Compile freshly generated source
+        run: bash scripts/build.sh
+      - name: Verify committed source matches regeneration
         run: |
           git add -A -- src abi teto.manifest.json SHA256SUMS
           git diff --cached --exit-code
           test -z "$(git ls-files -- dist '*.wasm' '*.o' '*.a' '*.so' '*.img' '*.elf' '*.bin')"
-  compile:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - run: npm install --package-lock=false
-      - name: Compile committed WAT without Thistle, Bake or Baguette
-        run: bash scripts/build.sh

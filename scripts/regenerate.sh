@@ -55,6 +55,11 @@ manifest["toolchain"] = {name: subprocess.check_output(["git", "-C", path, "rev-
                          for name, path in [("Thistle", "thistle"), ("Bake", "baguette/vendor/bake"), ("Baguette", "baguette")]}
 for name, item in manifest["variants"].items():
     item["file"] = "dist/teto/" + name
+    # Newer hosts expose optional type metadata from Module.imports/exports.
+    # Memory policy is recorded above; retain the stable descriptor fields so
+    # regenerating under Bun or supported Node versions produces the same file.
+    item["imports"] = [{key: value for key, value in entry.items() if key in {"module", "name", "kind"}}
+                       for entry in item["imports"]]
 manifest["proof"]["generatedWAT"] = sorted(str(path) for path in Path("src").rglob("*.wat"))
 manifest["proof"]["modularWAT"] = {"teto": "src/baseline/layout.json", "teto-threads": "src/threaded/layout.json"}
 Path("teto.manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

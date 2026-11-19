@@ -26,7 +26,15 @@
     },
     {
       "path": "build/build/baguette-bake/src/native/abi.ts",
-      "sha256": "ec351a9bf118a1b5e6d60c0fe1d74a814014876e753768a4d81bcc574c1fe9b3"
+      "sha256": "99163ef0644a05976e828eadc3f4c9bf221c8c9832ba5dd7f0bb120e5072ab29"
+    },
+    {
+      "path": "build/build/baguette-bake/src/native/memory.ts",
+      "sha256": "d825ff7a686dd1decca8c4e6daa06d22c6c8af18b07e95f71b0a5b8adab8bb38"
+    },
+    {
+      "path": "build/build/baguette-bake/src/native/image-range.ts",
+      "sha256": "4ad7b6455e52ef8a4687466dc0ca4581a30f351aef778e08fb28120830f6df61"
     },
     {
       "path": "build/build/baguette-bake/src/core/rv64-branch.ts",
@@ -46,7 +54,7 @@
     },
     {
       "path": "build/build/baguette-bake/src/core/rv64-word.ts",
-      "sha256": "cd774a454611c5047dc9d77596549e7facf87ad868ecf766d4371bde06d53f78"
+      "sha256": "ecbc243ca1860d2621fb06acfc472036336f7a2ced24bcf63e57e438ee1c2dff"
     },
     {
       "path": "build/build/baguette-bake/src/core/rv64-immediate-op.ts",
@@ -54,39 +62,39 @@
     },
     {
       "path": "build/build/baguette-bake/src/core/rv64-register.ts",
-      "sha256": "f7fab76b7fc4be1e44e4f9e66cc5394ba42138eacf1d6001ebbd3561fe0656db"
+      "sha256": "045d11af7195a640a05a6a39b949d72a72d4aec2b7974448dc046284afdc5bba"
     },
     {
       "path": "build/build/baguette-bake/src/core/rv64-fclass.ts",
-      "sha256": "753fe3c6e98895c5064986e25f570049da8d9d9497b77e91c3b73f60edcde089"
+      "sha256": "34dd8a7a1d79125ad0614046a62a258ef7e914efc05e1037d518a84e1797db41"
     },
     {
-      "path": "build/build/baguette-bake/src/native/memory.ts",
-      "sha256": "f79c4e67b093aa0a13ac999642f1ba037bc2649cb00d481b7d60357fe655b629"
+      "path": "build/build/baguette-bake/src/core/rv64-decode.ts",
+      "sha256": "4b29b40554e87c3f28ef2048538171917a33592e115d32e3e6b94686f166fedd"
     },
     {
       "path": "build/build/baguette-bake/src/native/word.ts",
-      "sha256": "2aca918c4e25bafa27a2af53994bb4ecac76f9b04e123d948aafe9f2e1304d77"
+      "sha256": "3aabafd38c2a1eeff4e83163998ae131b2b0730fe10a93609f3c2fdc03c81576"
     },
     {
       "path": "build/build/baguette-bake/src/native/vfs.ts",
-      "sha256": "50261d133db289fcd914c147c76591fb15d65394ba08c19dd52bd06da9f01bd6"
+      "sha256": "0cb70d550473c8cf17f2fc9c3c4c1f861d4d4cbcfb1f80dc9c66bc0591eb0180"
     },
     {
       "path": "build/build/baguette-bake/src/native/kernel.ts",
-      "sha256": "6d97cfa82aafd229040a21dabc53042df5f41c21a33a6986a42b883d932a696d"
+      "sha256": "10c239d4b5ac3dfbed7fb868cacc689051c6daa53b8ab01ac44806c629604fd6"
     },
     {
       "path": "build/build/baguette-bake/src/native/thx.ts",
-      "sha256": "76b8793393e7e0863b54d467c3693c9e2db966674149d9fd3f3ff90e40282748"
+      "sha256": "8f47d7c37a152e1f4d2829fb29d3195a0062d056fff24da441971c9331a1270d"
     },
     {
       "path": "build/build/baguette-bake/src/native/start.ts",
-      "sha256": "99f38ac281a1b6dbd24fbd1939b5682ee6d44d534509eca226f8d34017751dd3"
+      "sha256": "e7019bf78f3f5403096d29011ed9361d340367f7a0caecbf6bc105eb7d1bc1a6"
     }
   ],
   "canonicalSource": "Thistle",
-  "canonicalRevision": "19a571d6da85f63256041766d5200ad50e825423",
+  "canonicalRevision": "a2be03338126ae7afd6ecb6cd4a18c30ae583459",
   "canonicalOriginalEntries": [
     "../thistle/src/native/abi.ts",
     "../thistle/src/native/kernel.ts",
@@ -98,6 +106,8 @@
     "thistle/src/core/native-types.ts",
     "thistle/src/native/types.ts",
     "thistle/src/native/abi.ts",
+    "thistle/src/native/memory.ts",
+    "thistle/src/native/image-range.ts",
     "thistle/src/core/rv64-branch.ts",
     "thistle/src/core/rv64-numbers.ts",
     "thistle/src/vm/rv64-immediate.ts",
@@ -106,7 +116,7 @@
     "thistle/src/core/rv64-immediate-op.ts",
     "thistle/src/core/rv64-register.ts",
     "thistle/src/core/rv64-fclass.ts",
-    "thistle/src/native/memory.ts",
+    "thistle/src/core/rv64-decode.ts",
     "thistle/src/native/word.ts",
     "thistle/src/native/vfs.ts",
     "thistle/src/native/kernel.ts",
@@ -129,10 +139,10 @@
       "sha256": "c174431f9a9e5fb340209c3461b72b6dc37316ba5b8869e6822b862340b2f6f4"
     }
   },
-  "sourceSha256": "614b3daccbee47d0e8b660921cb1bdbfb9894703ff0dec9270ae1cb4ea1140fb",
+  "sourceSha256": "b886876a790b4e2b4a3c1f90fd748fa528af5562071bc9420ffd4ea9bb03406c",
   "loweredSourceSha256": {
-    "teto": "b8ece8535136a91718b48c6ab6d106a5d21571c9fe3393f897f8f69f7c05b121",
-    "teto-threads": "277ecda64562647cd31ccb0e32518f73cb1070ad9092c5b45d45b529f037aa57"
+    "teto": "60117716e912fb0b82f760feb4c45fbb44658fdc0e1666801003bdc39c3504e0",
+    "teto-threads": "93efb4127054f9001cc721170e04ddf76b60b871393af99eb5f811220bc83143"
   },
   "compiler": {
     "frontend": "TypeScript 5.9.3 semantic checker and module resolver",
@@ -263,6 +273,7 @@
       "src/baseline/core/native-types.wat",
       "src/baseline/core/rv64-arithmetic.wat",
       "src/baseline/core/rv64-branch.wat",
+      "src/baseline/core/rv64-decode.wat",
       "src/baseline/core/rv64-fclass.wat",
       "src/baseline/core/rv64-immediate-op.wat",
       "src/baseline/core/rv64-numbers.wat",
@@ -270,6 +281,7 @@
       "src/baseline/core/rv64-word.wat",
       "src/baseline/module.wat",
       "src/baseline/native/abi.wat",
+      "src/baseline/native/image-range.wat",
       "src/baseline/native/kernel.wat",
       "src/baseline/native/memory.wat",
       "src/baseline/native/start.wat",
@@ -282,6 +294,7 @@
       "src/threaded/core/native-types.wat",
       "src/threaded/core/rv64-arithmetic.wat",
       "src/threaded/core/rv64-branch.wat",
+      "src/threaded/core/rv64-decode.wat",
       "src/threaded/core/rv64-fclass.wat",
       "src/threaded/core/rv64-immediate-op.wat",
       "src/threaded/core/rv64-numbers.wat",
@@ -289,6 +302,7 @@
       "src/threaded/core/rv64-word.wat",
       "src/threaded/module.wat",
       "src/threaded/native/abi.wat",
+      "src/threaded/native/image-range.wat",
       "src/threaded/native/kernel.wat",
       "src/threaded/native/memory.wat",
       "src/threaded/native/start.wat",
@@ -309,8 +323,8 @@
   "variants": {
     "teto.wasm": {
       "file": "dist/teto/teto.wasm",
-      "bytes": 46016,
-      "sha256": "b62def4c46da1f8adedaa2ce1cc6948190ec5000cff229fd8d2f3901c752f7d2",
+      "bytes": 51767,
+      "sha256": "7df4aec310b13212d26b5e3d1abd640dc6fe327c6cbe2d9b2d8dd605c765c7a9",
       "threaded": false,
       "functionCount": 96,
       "imports": [
@@ -421,8 +435,8 @@
     },
     "teto-threads.wasm": {
       "file": "dist/teto/teto-threads.wasm",
-      "bytes": 45853,
-      "sha256": "3491570a034392743f54746455ea55ee5e1f195bdc4f74503e8fb2cf85cdd7ed",
+      "bytes": 51442,
+      "sha256": "3aa6aa264615709731ad2db4c3af6efe26c5235a65bd4bed5d992407aa17f850",
       "threaded": true,
       "functionCount": 96,
       "imports": [
@@ -539,8 +553,8 @@
     "export": false
   },
   "toolchain": {
-    "Thistle": "19a571d6da85f63256041766d5200ad50e825423",
-    "Bake": "f5a2d6076bfd87309f89485f8b291b45a8592af5",
-    "Baguette": "1bac7a3309af4cda7e8b160af643f0a4e9e689fe"
+    "Thistle": "a2be03338126ae7afd6ecb6cd4a18c30ae583459",
+    "Bake": "57127ffd6e2d09dae416e2a8220a42a407095e5e",
+    "Baguette": "ac724688278e5dcb5996961c2d2550c8a454b31e"
   }
 }

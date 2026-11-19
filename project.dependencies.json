@@ -5,7 +5,7 @@
       "name": "Thistle",
       "repository": "kittycrow-kittyx/thistle",
       "path": "thistle",
-      "commit": "19a571d6da85f63256041766d5200ad50e825423",
+      "commit": "a2be03338126ae7afd6ecb6cd4a18c30ae583459",
       "relationship": "build",
       "direct": true,
       "updatePolicy": "pull-request"
@@ -14,7 +14,7 @@
       "name": "Baguette",
       "repository": "kittycrow-kittyx/baguette",
       "path": "baguette",
-      "commit": "1bac7a3309af4cda7e8b160af643f0a4e9e689fe",
+      "commit": "70bc579da71f66ce3e2bf7f4251c8e3085c5dd6d",
       "relationship": "build",
       "direct": true,
       "updatePolicy": "pull-request"
