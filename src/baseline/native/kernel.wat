@@ -3300,7 +3300,7 @@
     i32.gt_u
     i32.and
     if
-     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$128 (result i32)
+     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$129 (result i32)
       block $folding-inner0
        local.get $1
        local.get $1
@@ -3336,14 +3336,14 @@
         i64.const 2
         i64.add
         i64.store
-        block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$427 (result i32)
+        block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$429 (result i32)
          local.get $9
          i32.eqz
          if
           local.get $1
           local.get $6
           call $build/teto-generated/teto/__bq_248d3b0e_compressedQuadrantZero
-          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$427
+          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$429
          end
          local.get $9
          i32.const 1
@@ -3353,7 +3353,7 @@
           local.get $6
           local.get $7
           call $build/teto-generated/teto/__bq_248d3b0e_compressedQuadrantOne
-          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$427
+          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$429
          end
          local.get $9
          i32.const 2
@@ -3363,7 +3363,7 @@
           local.get $6
           local.get $7
           call $build/teto-generated/teto/__bq_248d3b0e_compressedQuadrantTwo
-          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$427
+          br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_compressedStep$429
          end
          local.get $1
          i32.const 10
@@ -3382,7 +3382,7 @@
          i32.store offset=4
          i32.const 4
         end
-        br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$128
+        br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$129
        end
        local.get $1
        local.get $7
@@ -3415,7 +3415,7 @@
        local.get $7
        local.get $3
        call $build/teto-generated/teto/__bq_248d3b0e_executeInstruction
-       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$128
+       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_step$129
       end
       local.get $1
       i32.const 10
@@ -7725,6 +7725,267 @@
   i64.store
   i32.const 0
  )
+ (func $build/teto-generated/teto/__bq_248d3b0e_unmapSyscall (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+  (local $3 i32)
+  (local $4 i32)
+  (local $5 i64)
+  (local $6 i32)
+  (local $7 i64)
+  (local $8 i32)
+  local.get $0
+  i32.const 10
+  i32.shl
+  local.tee $3
+  i32.const 4096
+  i32.add
+  local.set $6
+  local.get $1
+  i32.const -1
+  i32.eq
+  if
+   local.get $3
+   i32.const 4304
+   i32.add
+   i64.const -3
+   i64.store
+   local.get $3
+   i32.const 4808
+   i32.add
+   local.tee $0
+   local.get $0
+   i64.load
+   i64.const 1
+   i64.add
+   i64.store
+   i32.const 0
+   return
+  end
+  local.get $1
+  i32.load
+  local.tee $3
+  i32.eqz
+  if
+   local.get $1
+   i32.const 1
+   i32.store
+  end
+  local.get $3
+  if
+   local.get $0
+   i32.const 10
+   i32.shl
+   i32.const 4120
+   i32.add
+   local.get $6
+   i64.load offset=24
+   i64.const 4
+   i64.sub
+   i64.store
+   i32.const 6
+   return
+  end
+  local.get $0
+  i32.const 10
+  i32.shl
+  local.tee $3
+  i32.const 4304
+  i32.add
+  i64.load
+  local.set $5
+  local.get $3
+  i32.const 4312
+  i32.add
+  i64.load
+  local.set $7
+  local.get $1
+  i32.load offset=276
+  local.set $8
+  block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_overlapsHostFile$680
+   loop $while-continue|0
+    local.get $4
+    local.get $8
+    i32.lt_u
+    if
+     i32.const 1
+     local.set $3
+     local.get $1
+     i32.load offset=272
+     local.get $4
+     i32.const 48
+     i32.mul
+     i32.add
+     local.tee $6
+     i32.load offset=40
+     i32.const 1
+     i32.eq
+     if (result i32)
+      local.get $5
+      local.get $6
+      i64.load offset=8
+      i64.lt_u
+     else
+      i32.const 0
+     end
+     if (result i32)
+      local.get $6
+      i64.load
+      local.get $5
+      local.get $7
+      i64.add
+      i64.lt_u
+     else
+      i32.const 0
+     end
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_overlapsHostFile$680
+     local.get $4
+     i32.const 1
+     i32.add
+     local.set $4
+     br $while-continue|0
+    end
+   end
+   i32.const 0
+   local.set $3
+  end
+  block $folding-inner0
+   local.get $3
+   if
+    local.get $1
+    i32.const 0
+    i32.store
+    local.get $0
+    i32.const 10
+    i32.shl
+    local.tee $1
+    i32.const 4096
+    i32.add
+    local.set $0
+    local.get $1
+    i32.const 4964
+    i32.add
+    i32.load
+    local.tee $1
+    i32.const 64
+    i32.load
+    i32.lt_u
+    if (result i32)
+     i32.const 60
+     i32.load
+     local.get $1
+     i32.const 352
+     i32.mul
+     i32.add
+    else
+     i32.const -1
+    end
+    local.set $1
+    local.get $0
+    local.get $0
+    i64.load offset=728
+    i64.const 1
+    i64.add
+    i64.store offset=728
+    local.get $1
+    i32.const -1
+    i32.ne
+    if
+     local.get $1
+     i32.const 2
+     i32.store offset=4
+    end
+    br $folding-inner0
+   end
+   local.get $0
+   local.get $2
+   local.get $1
+   local.get $0
+   i32.const 10
+   i32.shl
+   local.tee $2
+   i32.const 4304
+   i32.add
+   i64.load
+   local.get $2
+   i32.const 4312
+   i32.add
+   i64.load
+   call $build/teto-generated/teto/__bq_248d3b0e_anonymousUnmap
+   local.tee $5
+   call $build/teto-generated/teto/__bq_248d3b0e_traceMappingOperation
+   local.get $1
+   i32.const 0
+   i32.store
+   local.get $5
+   i64.const -4096
+   i64.eq
+   if
+    local.get $2
+    i32.const 4096
+    i32.add
+    local.set $0
+    local.get $2
+    i32.const 4964
+    i32.add
+    i32.load
+    local.tee $1
+    i32.const 64
+    i32.load
+    i32.lt_u
+    if (result i32)
+     i32.const 60
+     i32.load
+     local.get $1
+     i32.const 352
+     i32.mul
+     i32.add
+    else
+     i32.const -1
+    end
+    local.set $1
+    local.get $0
+    local.get $0
+    i64.load offset=728
+    i64.const 1
+    i64.add
+    i64.store offset=728
+    local.get $1
+    i32.const -1
+    i32.ne
+    if
+     local.get $1
+     i32.const 2
+     i32.store offset=4
+    end
+    br $folding-inner0
+   end
+   local.get $0
+   i32.const 10
+   i32.shl
+   local.tee $0
+   i32.const 4304
+   i32.add
+   local.get $5
+   i64.store
+   local.get $0
+   i32.const 4808
+   i32.add
+   local.tee $0
+   local.get $0
+   i64.load
+   i64.const 1
+   i64.add
+   i64.store
+   i32.const 0
+   return
+  end
+  local.get $0
+  i32.const 1
+  i32.store offset=8
+  local.get $0
+  i32.const 2
+  i32.store offset=4
+  i32.const 1
+ )
  (func $build/teto-generated/teto/__bq_248d3b0e_thistleKernelInitWithVfs (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
@@ -8706,7 +8967,7 @@
    end
    i32.const 1
    local.set $5
-   block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$678
+   block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$681
     local.get $2
     local.get $1
     i64.load offset=296
@@ -8739,7 +9000,7 @@
     i64.add
     i64.ge_u
     i32.or
-    br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$678
+    br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$681
     local.get $1
     i32.load offset=276
     local.set $11
@@ -8776,7 +9037,7 @@
       else
        i32.const 0
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$678
+      br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingConflictExcept$681
       local.get $3
       i32.const 1
       i32.add
@@ -8837,7 +9098,7 @@
     local.get $7
     return
    end
-   block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyAllocatedRange$81 (result i32)
+   block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyAllocatedRange$82 (result i32)
     local.get $1
     i32.load offset=192
     local.set $13
@@ -8927,7 +9188,7 @@
       i32.const 0
       local.set $4
       i32.const 0
-      block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyPageSpan$302 (result i32)
+      block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyPageSpan$304 (result i32)
        loop $while-continue|011
         local.get $4
         local.get $18
@@ -8949,7 +9210,7 @@
          i32.const -1
          i32.eq
          i32.or
-         br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyPageSpan$302
+         br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyPageSpan$304
          drop
          i32.const 65536
          local.get $8
@@ -8986,7 +9247,7 @@
        i32.const 1
       end
       i32.eqz
-      br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyAllocatedRange$81
+      br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_copyAllocatedRange$82
       drop
       local.get $3
       i32.const 1
@@ -9374,7 +9635,7 @@
    i64.const -4096
    return
   end
-  block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$82 (result i32)
+  block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$83 (result i32)
    local.get $1
    local.set $2
    local.get $0
@@ -9434,7 +9695,7 @@
      i32.const 0
      local.get $9
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$82
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$83
      drop
      br $while-continue|00
     end
@@ -9966,7 +10227,7 @@
     i32.const 3288
     i32.load
     local.set $7
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      local.get $3
      i32.const 56
      i32.eq
@@ -10127,7 +10388,7 @@
        i64.extend_i32_s
       end
       local.set $5
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      end
      i64.const -9
      local.set $5
@@ -10142,7 +10403,7 @@
       local.get $11
       i32.le_u
      end
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      local.get $2
      i32.load offset=320
      local.get $11
@@ -10153,7 +10414,7 @@
      i32.load
      local.tee $0
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      local.get $3
      i32.const 57
      i32.eq
@@ -10164,7 +10425,7 @@
       memory.fill
       i64.const 0
       local.set $5
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      end
      local.get $3
      i32.const 63
@@ -10444,7 +10705,7 @@
        i64.add
        i64.store offset=16
       end
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$674
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mountedFileLocked$676
      end
      i64.const -38
      local.set $5
@@ -10598,7 +10859,7 @@
     local.set $3
     i64.const -22
     local.set $10
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$680
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$683
      i32.const 0
      local.get $2
      i32.const 4320
@@ -10639,7 +10900,7 @@
      i32.or
      select
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$680
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$683
      local.get $7
      i64.const 4095
      i64.add
@@ -10651,14 +10912,14 @@
      local.get $6
      i64.gt_u
      i32.or
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$680
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$683
      local.get $3
      local.get $4
      i64.add
      local.set $7
      i64.const -4096
      local.set $10
-     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$88 (result i32)
+     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$89 (result i32)
       local.get $3
       local.set $4
       local.get $1
@@ -10718,7 +10979,7 @@
         i32.const 0
         local.get $11
         i32.eqz
-        br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$88
+        br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mappingsCover$89
         drop
         br $while-continue|0
        end
@@ -10726,7 +10987,7 @@
       i32.const 1
      end
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$680
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$683
      local.get $1
      i32.load offset=276
      local.set $5
@@ -10761,7 +11022,7 @@
        else
         i32.const 0
        end
-       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$680
+       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_syncAnonymous$683
        local.get $11
        i32.const 1
        i32.add
@@ -10913,7 +11174,7 @@
    i32.const 6
    return
   end
-  block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+  block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    local.get $2
    i32.const 143
    i32.eq
@@ -11133,13 +11394,13 @@
      i64.const 0
     end
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 144
    i32.eq
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$141 (result i64)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$142 (result i64)
      i64.const -22
      local.get $0
      i32.const 10
@@ -11155,7 +11416,7 @@
      i64.ge_s
      i32.and
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$141
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$142
      drop
      i64.const -1
      local.get $1
@@ -11194,7 +11455,7 @@
       i64.eq
      end
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$141
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGid$142
      drop
      local.get $1
      i64.load32_s offset=28
@@ -11218,7 +11479,7 @@
      i64.const 0
     end
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 145
@@ -11439,13 +11700,13 @@
      i64.const 0
     end
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 146
    i32.eq
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$142 (result i64)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$143 (result i64)
      i64.const -22
      local.get $0
      i32.const 10
@@ -11461,7 +11722,7 @@
      i64.ge_s
      i32.and
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$142
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$143
      drop
      i64.const -1
      local.get $1
@@ -11500,7 +11761,7 @@
       i64.eq
      end
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$142
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setUid$143
      drop
      local.get $1
      i64.load32_s offset=28
@@ -11524,7 +11785,7 @@
      i64.const 0
     end
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 147
@@ -11534,7 +11795,7 @@
     local.get $1
     call $build/teto-generated/teto/__bq_248d3b0e_setResUid
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 148
@@ -11545,7 +11806,7 @@
     i32.const 0
     call $build/teto-generated/teto/__bq_248d3b0e_getResId
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 149
@@ -11555,7 +11816,7 @@
     local.get $1
     call $build/teto-generated/teto/__bq_248d3b0e_setResGid
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 150
@@ -11566,7 +11827,7 @@
     i32.const 1
     call $build/teto-generated/teto/__bq_248d3b0e_getResId
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 151
@@ -11687,7 +11948,7 @@
      i64.const -22
      local.set $3
     end
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 158
@@ -11695,7 +11956,7 @@
    if
     i64.const -22
     local.set $3
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
      local.get $0
      i32.const 10
      i32.shl
@@ -11706,7 +11967,7 @@
      local.tee $4
      i64.const 65536
      i64.gt_u
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
      local.get $1
      i64.load32_s offset=56
      i32.wrap_i64
@@ -11716,13 +11977,13 @@
      local.set $3
      local.get $4
      i64.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
      i64.const -22
      local.set $3
      local.get $4
      local.get $8
      i64.lt_u
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
      i64.const -14
      local.set $3
      local.get $2
@@ -11751,7 +12012,7 @@
       i32.const 0
      end
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
      i32.const 0
      local.set $2
      loop $while-continue|0
@@ -11780,7 +12041,7 @@
        i32.const 4
        call $build/teto-generated/teto/__bq_248d3b0e_guestStoreU64
        i32.eqz
-       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$683
+       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getGroups$686
        local.get $2
        i32.const 1
        i32.add
@@ -11792,13 +12053,13 @@
      i64.extend_i32_u
      local.set $3
     end
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    local.get $2
    i32.const 159
    i32.eq
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$106 (result i64)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$107 (result i64)
      i64.const -1
      local.get $1
      i64.load32_s offset=28
@@ -11806,7 +12067,7 @@
      i64.extend_i32_u
      i64.const 0
      i64.ne
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$106
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$107
      drop
      i64.const -22
      local.get $0
@@ -11819,7 +12080,7 @@
      local.tee $3
      i64.const 32
      i64.gt_u
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$106
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$107
      drop
      local.get $2
      i32.const 4312
@@ -11848,7 +12109,7 @@
       i32.const 1
      end
      i32.eqz
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$106
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$107
      drop
      loop $while-continue|00
       local.get $2
@@ -11867,7 +12128,7 @@
        call $build/teto-generated/teto/__bq_248d3b0e_guestLoadU64
        i64.const 4294967295
        i64.ge_u
-       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$106
+       br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_setGroups$107
        drop
        local.get $5
        i32.const 1
@@ -11912,7 +12173,7 @@
      i64.const 0
     end
     local.set $3
-    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$410
+    br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_credentialSyscall$412
    end
    i64.const -38
    local.set $3
@@ -11976,16 +12237,16 @@
   else
    i32.const -1
   end
-  local.set $11
+  local.set $7
   local.get $1
   i32.const 10
   i32.shl
-  local.tee $7
+  local.tee $8
   i32.const 4360
   i32.add
   i64.load
   i32.wrap_i64
-  local.set $8
+  local.set $11
   local.get $10
   i32.const 704
   i32.add
@@ -11995,21 +12256,21 @@
   i64.add
   i64.store
   block $folding-inner1
-   local.get $8
+   local.get $11
    i32.const 93
    i32.eq
    i32.const 0
    local.get $1
    if (result i32)
-    local.get $7
+    local.get $8
     i32.const 4964
     i32.add
     i32.load
-    local.tee $7
+    local.tee $8
     i32.const -1
     i32.ne
     if (result i32)
-     local.get $7
+     local.get $8
      i32.const 4964
      i32.load
      i32.eq
@@ -12021,10 +12282,10 @@
    end
    select
    br_if $folding-inner1
-   local.get $8
+   local.get $11
    i32.const 94
    i32.eq
-   local.get $8
+   local.get $11
    i32.const 93
    i32.eq
    i32.or
@@ -12043,14 +12304,14 @@
     i32.wrap_i64
     local.tee $0
     i32.store offset=660
-    local.get $11
+    local.get $7
     i32.const -1
     i32.ne
     if
-     local.get $11
+     local.get $7
      local.get $0
      i32.store offset=20
-     local.get $11
+     local.get $7
      i32.const 3
      i32.store offset=4
     end
@@ -12083,23 +12344,23 @@
    i32.load
    i32.const 1
    i32.eq
-   local.tee $7
+   local.tee $8
    if (result i32)
-    local.get $8
+    local.get $11
     i32.const 57
     i32.eq
-    local.get $8
+    local.get $11
     i32.const 56
     i32.eq
     i32.or
-    local.get $8
+    local.get $11
     i32.const 62
     i32.eq
     i32.or
     if (result i32)
      i32.const 1
     else
-     local.get $8
+     local.get $11
      i32.const 63
      i32.eq
      if (result i32)
@@ -12121,13 +12382,13 @@
    if
     local.get $0
     local.get $1
+    local.get $7
     local.get $11
-    local.get $8
     call $build/teto-generated/teto/__bq_248d3b0e_mountedFileSyscall
     i32.const 0
     return
    end
-   local.get $8
+   local.get $11
    i32.const 63
    i32.eq
    if (result i32)
@@ -12140,22 +12401,22 @@
    end
    if
     local.get $1
-    local.get $11
     local.get $7
+    local.get $8
     call $build/teto-generated/teto/__bq_248d3b0e_readHostConsole
     return
    end
-   local.get $8
+   local.get $11
    i32.const 64
    i32.eq
    if
     local.get $1
-    local.get $11
     local.get $7
+    local.get $8
     call $build/teto-generated/teto/__bq_248d3b0e_writeHostConsole
     return
    end
-   local.get $8
+   local.get $11
    i32.const 124
    i32.eq
    if
@@ -12179,11 +12440,11 @@
     i32.const 0
     return
    end
-   local.get $8
+   local.get $11
    i32.const 214
    i32.eq
    if
-    local.get $11
+    local.get $7
     i32.const -1
     i32.eq
     if (result i32)
@@ -12206,13 +12467,13 @@
      i64.store
      i32.const 0
     else
-     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$143 (result i32)
-      local.get $11
+     block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$144 (result i32)
+      local.get $7
       i32.load
       local.tee $0
       i32.eqz
       if
-       local.get $11
+       local.get $7
        i32.const 1
        i32.store
       end
@@ -12230,9 +12491,9 @@
        i64.sub
        i64.store
        i32.const 6
-       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$143
+       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$144
       end
-      local.get $11
+      local.get $7
       i64.load offset=296
       local.set $12
       block $folding-inner0
@@ -12245,13 +12506,13 @@
        local.tee $9
        i64.eqz
        br_if $folding-inner0
-       local.get $11
+       local.get $7
        i64.load offset=288
        local.set $5
-       local.get $11
+       local.get $7
        i64.load offset=256
        local.set $4
-       local.get $11
+       local.get $7
        i32.load offset=276
        local.set $0
        loop $while-continue|0
@@ -12262,7 +12523,7 @@
          i32.const 1
          local.get $3
          local.get $9
-         local.get $11
+         local.get $7
          i32.load offset=272
          local.get $2
          i32.const 48
@@ -12309,15 +12570,15 @@
        local.get $12
        i64.lt_u
        if
-        local.get $11
+        local.get $7
         local.get $9
         local.get $12
         call $build/teto-generated/teto/__bq_248d3b0e_clearMappedRange
        end
-       local.get $11
+       local.get $7
        local.get $9
        i64.store offset=296
-       local.get $11
+       local.get $7
        i32.const 0
        i32.store
        local.get $1
@@ -12338,9 +12599,9 @@
        i64.add
        i64.store
        i32.const 0
-       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$143
+       br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_programBreak$144
       end
-      local.get $11
+      local.get $7
       i32.const 0
       i32.store
       local.get $1
@@ -12365,7 +12626,7 @@
     end
     return
    end
-   local.get $8
+   local.get $11
    i32.const 222
    i32.eq
    if (result i32)
@@ -12383,7 +12644,7 @@
     i32.const 0
    end
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$144 (result i32)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$145 (result i32)
      local.get $1
      i32.const 10
      i32.shl
@@ -12391,7 +12652,7 @@
      i32.const 4096
      i32.add
      local.set $2
-     local.get $11
+     local.get $7
      i32.const -1
      i32.eq
      if
@@ -12410,14 +12671,14 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$144
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$145
      end
-     local.get $11
+     local.get $7
      i32.load
      local.tee $0
      i32.eqz
      if
-      local.get $11
+      local.get $7
       i32.const 1
       i32.store
      end
@@ -12434,11 +12695,11 @@
       i64.sub
       i64.store
       i32.const 6
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$144
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_mapSyscall$145
      end
      local.get $1
-     local.get $8
      local.get $11
+     local.get $7
      local.get $1
      i32.const 10
      i32.shl
@@ -12461,7 +12722,7 @@
      call $build/teto-generated/teto/__bq_248d3b0e_anonymousMap
      local.tee $4
      call $build/teto-generated/teto/__bq_248d3b0e_traceMappingOperation
-     local.get $11
+     local.get $7
      i32.const 0
      i32.store
      local.get $0
@@ -12482,195 +12743,57 @@
     end
     return
    end
-   local.get $8
+   local.get $11
    i32.const 215
    i32.eq
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_unmapSyscall$145 (result i32)
-     local.get $1
-     i32.const 10
-     i32.shl
-     local.tee $0
-     i32.const 4096
-     i32.add
-     local.set $2
-     local.get $11
-     i32.const -1
-     i32.eq
-     if
-      local.get $0
-      i32.const 4304
-      i32.add
-      i64.const -3
-      i64.store
-      local.get $0
-      i32.const 4808
-      i32.add
-      local.tee $0
-      local.get $0
-      i64.load
-      i64.const 1
-      i64.add
-      i64.store
-      i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_unmapSyscall$145
-     end
-     local.get $11
-     i32.load
-     local.tee $0
-     i32.eqz
-     if
-      local.get $11
-      i32.const 1
-      i32.store
-     end
-     local.get $0
-     if
-      local.get $1
-      i32.const 10
-      i32.shl
-      i32.const 4120
-      i32.add
-      local.get $2
-      i64.load offset=24
-      i64.const 4
-      i64.sub
-      i64.store
-      i32.const 6
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_unmapSyscall$145
-     end
-     local.get $1
-     local.get $8
-     local.get $11
-     local.get $1
-     i32.const 10
-     i32.shl
-     local.tee $0
-     i32.const 4304
-     i32.add
-     i64.load
-     local.get $0
-     i32.const 4312
-     i32.add
-     i64.load
-     call $build/teto-generated/teto/__bq_248d3b0e_anonymousUnmap
-     local.tee $4
-     call $build/teto-generated/teto/__bq_248d3b0e_traceMappingOperation
-     local.get $11
-     i32.const 0
-     i32.store
-     local.get $4
-     i64.const -4096
-     i64.eq
-     if
-      local.get $0
-      i32.const 4096
-      i32.add
-      local.set $1
-      local.get $0
-      i32.const 4964
-      i32.add
-      i32.load
-      local.tee $0
-      i32.const 64
-      i32.load
-      i32.lt_u
-      if (result i32)
-       i32.const 60
-       i32.load
-       local.get $0
-       i32.const 352
-       i32.mul
-       i32.add
-      else
-       i32.const -1
-      end
-      local.set $0
-      local.get $1
-      local.get $1
-      i64.load offset=728
-      i64.const 1
-      i64.add
-      i64.store offset=728
-      local.get $0
-      i32.const -1
-      i32.ne
-      if
-       local.get $0
-       i32.const 2
-       i32.store offset=4
-      end
-      local.get $1
-      i32.const 1
-      i32.store offset=8
-      local.get $1
-      i32.const 2
-      i32.store offset=4
-      i32.const 1
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_unmapSyscall$145
-     end
-     local.get $1
-     i32.const 10
-     i32.shl
-     local.tee $0
-     i32.const 4304
-     i32.add
-     local.get $4
-     i64.store
-     local.get $0
-     i32.const 4808
-     i32.add
-     local.tee $0
-     local.get $0
-     i64.load
-     i64.const 1
-     i64.add
-     i64.store
-     i32.const 0
-    end
+    local.get $1
+    local.get $7
+    local.get $11
+    call $build/teto-generated/teto/__bq_248d3b0e_unmapSyscall
     return
    end
-   local.get $8
+   local.get $11
    i32.const 226
    i32.eq
-   local.get $8
+   local.get $11
    i32.const 216
    i32.eq
    i32.or
-   local.get $8
+   local.get $11
    i32.const 227
    i32.eq
    i32.or
    if
     local.get $1
+    local.get $7
     local.get $11
-    local.get $8
     call $build/teto-generated/teto/__bq_248d3b0e_modifyMappingSyscall
     return
    end
-   local.get $8
+   local.get $11
    i32.const 152
    i32.le_u
-   local.get $8
+   local.get $11
    i32.const 143
    i32.ge_u
    i32.and
-   local.get $8
+   local.get $11
    i32.const 158
    i32.eq
    i32.or
-   local.get $8
+   local.get $11
    i32.const 159
    i32.eq
    i32.or
    if
     local.get $1
+    local.get $7
     local.get $11
-    local.get $8
     call $build/teto-generated/teto/__bq_248d3b0e_lockedCredentialSyscall
     return
    end
-   local.get $8
+   local.get $11
    i32.const 178
    i32.eq
    i32.const 0
@@ -12698,16 +12821,16 @@
    end
    select
    br_if $folding-inner1
-   local.get $8
+   local.get $11
    i32.const 178
    i32.le_u
-   local.get $8
+   local.get $11
    i32.const 172
    i32.ge_u
    i32.and
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415 (result i32)
-     local.get $11
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417 (result i32)
+     local.get $7
      i32.const -1
      i32.eq
      if
@@ -12729,12 +12852,12 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 178
      i32.eq
-     local.get $8
+     local.get $11
      i32.const 172
      i32.eq
      i32.or
@@ -12745,7 +12868,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=8
       i64.store
       local.get $0
@@ -12758,9 +12881,9 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 173
      i32.eq
      if
@@ -12770,7 +12893,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=12
       i64.store
       local.get $0
@@ -12783,9 +12906,9 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 174
      i32.eq
      if
@@ -12795,7 +12918,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=24
       i64.store
       local.get $0
@@ -12808,9 +12931,9 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 175
      i32.eq
      if
@@ -12820,7 +12943,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=28
       i64.store
       local.get $0
@@ -12833,9 +12956,9 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 176
      i32.eq
      if
@@ -12845,7 +12968,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=40
       i64.store
       local.get $0
@@ -12858,9 +12981,9 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
-     local.get $8
+     local.get $11
      i32.const 177
      i32.eq
      if
@@ -12870,7 +12993,7 @@
       local.tee $0
       i32.const 4304
       i32.add
-      local.get $11
+      local.get $7
       i64.load32_s offset=44
       i64.store
       local.get $0
@@ -12883,7 +13006,7 @@
       i64.add
       i64.store
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$415
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_getProcessId$417
      end
      local.get $1
      i32.const 10
@@ -15218,7 +15341,7 @@
      i32.const 0
     end
     if (result i32)
-     block $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$121 (result i64)
+     block $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$122 (result i64)
       local.get $13
       local.get $2
       i32.const 20
@@ -15236,7 +15359,7 @@
       i64.extend32_s
       local.get $10
       i32.eqz
-      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$121
+      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$122
       drop
       local.get $13
       i64.extend32_s
@@ -15251,7 +15374,7 @@
       local.get $10
       i32.const 1
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$121
+      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$122
       drop
       local.get $3
       local.get $4
@@ -15269,7 +15392,7 @@
       local.get $10
       i32.const 5
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$121
+      br_if $__inlined_func$build/teto-generated/teto/rv64ImmediateWordValue$122
       drop
       i64.const 0
      end
@@ -15437,11 +15560,11 @@
      local.get $3
      i64.store
     end
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$422
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$424
      local.get $0
      i32.const 6
      i32.eq
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$422
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$424
      local.get $0
      i32.const 4
      i32.eq
@@ -15463,7 +15586,7 @@
       i32.store offset=4
       i32.const 4
       local.set $0
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$422
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepAtomic$424
      end
      i32.const 0
      local.set $0
@@ -15680,7 +15803,7 @@
      i64.const 0
     end
     local.set $4
-    block $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$122 (result i32)
+    block $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$123 (result i32)
      local.get $7
      i32.const 5
      i32.eq
@@ -15704,7 +15827,7 @@
      local.get $9
      i32.const 1
      i32.eq
-     br_if $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$122
+     br_if $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$123
      drop
      block $folding-inner0
       local.get $11
@@ -15714,12 +15837,12 @@
       local.get $7
       i32.const 1
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$122
+      br_if $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$123
       drop
       local.get $10
       br_if $folding-inner0
       i32.const 0
-      br $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$122
+      br $__inlined_func$build/teto-generated/teto/rv64RegisterWordValid$123
      end
      local.get $9
      i32.eqz
@@ -15817,7 +15940,7 @@
     i32.const 27
     i32.shr_u
     local.set $14
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$424 (result i32)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$426 (result i32)
      i32.const 0
      local.get $2
      i32.const 25
@@ -15832,7 +15955,7 @@
      i32.const 1
      i32.ne
      i32.and
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$424
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$426
      drop
      local.get $2
      i32.const 12
@@ -15864,7 +15987,7 @@
      select
      i32.const 0
      i32.lt_s
-     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$424
+     br_if $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_floatingMultiplyAdd$426
      drop
      i64.const 2143289344
      local.get $1
@@ -16330,7 +16453,7 @@
    i32.eq
    i32.or
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepJump$127 (result i32)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepJump$128 (result i32)
      local.get $2
      i32.const 12
      i32.shr_u
@@ -16361,7 +16484,7 @@
       i32.const 4
       i32.store offset=4
       i32.const 4
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepJump$127
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepJump$128
      end
      local.get $0
      i32.const 103
@@ -16481,7 +16604,7 @@
    i32.const 115
    i32.eq
    if
-    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$425 (result i32)
+    block $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$427 (result i32)
      local.get $2
      i32.const 115
      i32.eq
@@ -16489,7 +16612,7 @@
       local.get $0
       local.get $1
       call $build/teto-generated/teto/__bq_248d3b0e_kernelSyscall
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$425
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$427
      end
      local.get $2
      i32.const 1048691
@@ -16511,7 +16634,7 @@
       i32.const 4
       i32.store offset=4
       i32.const 4
-      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$425
+      br $__inlined_func$build/teto-generated/teto/__bq_248d3b0e_stepSystem$427
      end
      local.get $1
      local.get $2

@@ -87,7 +87,7 @@
     {
       "source": "native/kernel.ts",
       "file": "native/kernel.wat",
-      "fields": 93
+      "fields": 94
     },
     {
       "source": "native/thx.ts",
@@ -1424,91 +1424,96 @@
     [
       "native/kernel.wat",
       124522,
+      4240
+    ],
+    [
+      "native/kernel.wat",
+      128762,
       4004
     ],
     [
       "native/kernel.wat",
-      128526,
+      132766,
       4185
     ],
     [
       "native/kernel.wat",
-      132711,
+      136951,
       4185
     ],
     [
       "native/kernel.wat",
-      136896,
+      141136,
       9021
     ],
     [
       "native/kernel.wat",
-      145917,
+      150157,
       3587
     ],
     [
       "native/kernel.wat",
-      149504,
+      153744,
       9427
     ],
     [
       "native/kernel.wat",
-      158931,
+      163171,
       14979
     ],
     [
       "native/kernel.wat",
-      173910,
+      178150,
       6619
     ],
     [
       "native/kernel.wat",
-      180529,
+      184769,
       21556
     ],
     [
       "native/kernel.wat",
-      202085,
-      19372
+      206325,
+      16721
     ],
     [
       "native/kernel.wat",
-      221457,
+      223046,
       30386
     ],
     [
       "native/kernel.wat",
-      251843,
+      253432,
       29567
     ],
     [
       "native/kernel.wat",
-      281410,
+      282999,
       3430
     ],
     [
       "native/kernel.wat",
-      284840,
+      286429,
       5985
     ],
     [
       "native/kernel.wat",
-      290825,
+      292414,
       10378
     ],
     [
       "native/kernel.wat",
-      301203,
+      302792,
       7973
     ],
     [
       "native/kernel.wat",
-      309176,
+      310765,
       3290
     ],
     [
       "native/kernel.wat",
-      312466,
+      314055,
       6453
     ],
     [

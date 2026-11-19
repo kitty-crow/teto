@@ -26,11 +26,11 @@
     },
     {
       "path": "build/build/baguette-bake/src/native/abi.ts",
-      "sha256": "99163ef0644a05976e828eadc3f4c9bf221c8c9832ba5dd7f0bb120e5072ab29"
+      "sha256": "98060470af2850525acd6cc325784d50c163aded234e8cc464de9c6a2be0fbe1"
     },
     {
       "path": "build/build/baguette-bake/src/native/memory.ts",
-      "sha256": "d825ff7a686dd1decca8c4e6daa06d22c6c8af18b07e95f71b0a5b8adab8bb38"
+      "sha256": "33b6527b9702d16b90f78c088307e0686d05eede65d550b6698984b2e2484d09"
     },
     {
       "path": "build/build/baguette-bake/src/native/image-range.ts",
@@ -82,7 +82,7 @@
     },
     {
       "path": "build/build/baguette-bake/src/native/kernel.ts",
-      "sha256": "10c239d4b5ac3dfbed7fb868cacc689051c6daa53b8ab01ac44806c629604fd6"
+      "sha256": "6b3cb2a40b0c228ae37bc66c8faaf873baf4a17eb51da5a2e0c4f2611f5c5709"
     },
     {
       "path": "build/build/baguette-bake/src/native/thx.ts",
@@ -94,7 +94,7 @@
     }
   ],
   "canonicalSource": "Thistle",
-  "canonicalRevision": "76932c85c4db2eb481345aafe8611e6f53de9d85",
+  "canonicalRevision": "5338d14b4ecb974ce56c4d13900ba34962a32093",
   "canonicalOriginalEntries": [
     "upstream/thistle/src/native/abi.ts",
     "upstream/thistle/src/native/kernel.ts",
@@ -139,10 +139,10 @@
       "sha256": "c174431f9a9e5fb340209c3461b72b6dc37316ba5b8869e6822b862340b2f6f4"
     }
   },
-  "sourceSha256": "b886876a790b4e2b4a3c1f90fd748fa528af5562071bc9420ffd4ea9bb03406c",
+  "sourceSha256": "d4839738512e0dbbd4c1f2bd892249e34cd80588e7f968605bbb3ec592ef1bf6",
   "loweredSourceSha256": {
-    "teto": "60117716e912fb0b82f760feb4c45fbb44658fdc0e1666801003bdc39c3504e0",
-    "teto-threads": "93efb4127054f9001cc721170e04ddf76b60b871393af99eb5f811220bc83143"
+    "teto": "899fe780a57d51787d68133ccd843de83f9f3222d4bede78fc6c553e1c8a79fc",
+    "teto-threads": "6bbece16e65c95b512842d9e8ad323294ff0500f87b3c0d57f65331193e1e3ad"
   },
   "compiler": {
     "frontend": "TypeScript 5.9.3 semantic checker and module resolver",
@@ -323,8 +323,8 @@
   "variants": {
     "teto.wasm": {
       "file": "dist/teto/teto.wasm",
-      "bytes": 51767,
-      "sha256": "7df4aec310b13212d26b5e3d1abd640dc6fe327c6cbe2d9b2d8dd605c765c7a9",
+      "bytes": 51922,
+      "sha256": "c0d8060676622b7d65a378a025a99a6d6230881b87e018f879619affd89f9f2b",
       "threaded": false,
       "functionCount": 96,
       "imports": [
@@ -435,8 +435,8 @@
     },
     "teto-threads.wasm": {
       "file": "dist/teto/teto-threads.wasm",
-      "bytes": 51442,
-      "sha256": "3aa6aa264615709731ad2db4c3af6efe26c5235a65bd4bed5d992407aa17f850",
+      "bytes": 51598,
+      "sha256": "135ff7474cafc6efe66cc3e1b8f2370a7bedc907f61e59eab48bc63b68563360",
       "threaded": true,
       "functionCount": 96,
       "imports": [
@@ -553,7 +553,7 @@
     "export": false
   },
   "toolchain": {
-    "Thistle": "76932c85c4db2eb481345aafe8611e6f53de9d85",
+    "Thistle": "5338d14b4ecb974ce56c4d13900ba34962a32093",
     "Bake": "30f7c767584737bf001d2f99b7d303b809bb4f0f",
     "Baguette": "6358889e2f63cbfc29b161b23454ce6e6301da9a"
   }

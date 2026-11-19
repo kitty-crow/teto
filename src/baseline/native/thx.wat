@@ -67,7 +67,7 @@
     if
      i32.const 1
      local.set $3
-     block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$474 (result i32)
+     block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$476 (result i32)
       i32.const -1
       local.get $0
       i32.const 1
@@ -75,7 +75,7 @@
       local.tee $0
       local.get $1
       i32.ge_u
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$474
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$476
       drop
       i32.const -1
       local.get $0
@@ -233,7 +233,7 @@
        i32.const 1
       end
       i32.eqz
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$474
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$476
       drop
       local.get $0
       i32.const 5
@@ -241,7 +241,7 @@
       local.get $4
       i32.const 117
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$474
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$476
       drop
       i32.const -1
       local.get $4
@@ -275,7 +275,7 @@
       i32.const 116
       i32.ne
       i32.and
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$474
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipEscape$476
       drop
       local.get $0
       i32.const 1
@@ -776,7 +776,7 @@
    i32.const 1
    i32.add
    local.set $4
-   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$562
+   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$564
     local.get $1
     local.get $2
     i32.lt_u
@@ -788,7 +788,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$562
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$564
     loop $while-continue|05
      local.get $1
      local.get $2
@@ -806,7 +806,7 @@
       local.tee $1
       i32.const -1
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$562
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$564
       loop $while-continue|07
        local.get $1
        local.get $2
@@ -855,7 +855,7 @@
       else
        i32.const 0
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$562
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$564
       i32.const -1
       local.set $4
       local.get $1
@@ -869,7 +869,7 @@
        i32.const 44
        i32.ne
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$562
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipArray$564
       local.get $1
       i32.const 1
       i32.add
@@ -961,7 +961,7 @@
    i32.const 1
    i32.add
    local.set $4
-   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
     local.get $1
     local.get $2
     i32.lt_u
@@ -973,7 +973,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
     loop $while-continue|02
      local.get $1
      local.get $2
@@ -987,7 +987,7 @@
       local.tee $1
       i32.const -1
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
       loop $while-continue|019
        local.get $1
        local.get $2
@@ -1032,7 +1032,7 @@
        i32.const 58
        i32.ne
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
       local.get $0
       local.get $1
       i32.const 1
@@ -1045,7 +1045,7 @@
       local.tee $1
       i32.const -1
       i32.eq
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
       loop $while-continue|023
        local.get $1
        local.get $2
@@ -1094,7 +1094,7 @@
       else
        i32.const 0
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
       i32.const -1
       local.set $4
       local.get $1
@@ -1108,7 +1108,7 @@
        i32.const 44
        i32.ne
       end
-      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$563
+      br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_skipObject$565
       local.get $1
       i32.const 1
       i32.add
@@ -1414,7 +1414,7 @@
   i32.const 4
   i32.eq
   if
-   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$129 (result i32)
+   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$130 (result i32)
     i32.const 14
     local.get $0
     i32.load8_u
@@ -1444,7 +1444,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$129
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$130
     drop
     i32.const 17
     local.get $0
@@ -1475,7 +1475,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$129
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$130
     drop
     i32.const 18
     local.get $0
@@ -1506,7 +1506,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$129
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$130
     drop
     i32.const 11
     local.get $0
@@ -1537,7 +1537,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$129
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength4$130
     drop
     i32.const 0
    end
@@ -1547,7 +1547,7 @@
   i32.const 5
   i32.eq
   if
-   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130 (result i32)
+   block $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131 (result i32)
     i32.const 7
     local.get $0
     i32.load8_u
@@ -1585,7 +1585,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131
     drop
     i32.const 8
     local.get $0
@@ -1624,7 +1624,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131
     drop
     i32.const 12
     local.get $0
@@ -1663,7 +1663,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131
     drop
     i32.const 13
     local.get $0
@@ -1702,7 +1702,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131
     drop
     i32.const 16
     local.get $0
@@ -1741,7 +1741,7 @@
     else
      i32.const 0
     end
-    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$130
+    br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_keyLength5$131
     drop
     i32.const 0
    end
@@ -2207,7 +2207,7 @@
   (local $10 i32)
   i32.const 2
   local.set $4
-  block $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+  block $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const 128
    i32.load
    i32.const 1
@@ -2237,13 +2237,13 @@
     i32.and
    end
    i32.eqz
-   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const 4
    local.set $4
    local.get $3
    i32.const 16
    i32.lt_u
-   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const 3
    local.set $4
    local.get $2
@@ -2274,7 +2274,7 @@
     i32.const 50
     i32.ne
    end
-   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const 4
    local.set $4
    local.get $2
@@ -2292,7 +2292,7 @@
    local.get $9
    i32.lt_u
    i32.or
-   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const -2128831035
    local.set $5
    i32.const 16
@@ -2324,7 +2324,7 @@
    local.get $2
    i32.load offset=12
    i32.ne
-   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$581
+   br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_validateEnvelope$583
    i32.const 0
    local.set $4
   end
@@ -3483,11 +3483,11 @@
         i32.const 15
         i32.eq
         if
-         block $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$580 (result i32)
+         block $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$582 (result i32)
           i32.const -1
           i32.const 3336
           i32.load
-          br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$580
+          br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$582
           drop
           i32.const 3328
           i32.load
@@ -3531,13 +3531,13 @@
             end
             local.tee $20
             i32.eqz
-            br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$580
+            br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$582
             drop
             i32.const -1
             local.get $10
             local.get $20
             i32.and
-            br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$580
+            br_if $__inlined_func$build/teto-generated/teto/__bq_302aa901_sectionFlags$582
             drop
             local.get $10
             local.get $20

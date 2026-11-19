@@ -101,14 +101,14 @@
      local.get $11
      i32.lt_u
      if
-      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$135 (result i32)
+      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136 (result i32)
        i32.const -1
        local.get $17
        local.get $3
        i32.sub
        i32.const 4
        i32.lt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$135
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
        drop
        i32.const -1
        local.get $3
@@ -120,7 +120,7 @@
        i32.const 4
        i32.sub
        i32.gt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$135
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
        drop
        i32.const 0
        local.set $5
@@ -137,7 +137,7 @@
          i32.add
          i32.load8_u
          i32.eqz
-         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$135
+         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
          drop
          local.get $5
          i32.const 1
@@ -384,14 +384,14 @@
      local.get $16
      i32.lt_u
      if
-      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136 (result i32)
+      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137 (result i32)
        i32.const -1
        local.get $17
        local.get $3
        i32.sub
        i32.const 4
        i32.lt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
        drop
        i32.const -1
        local.get $3
@@ -403,7 +403,7 @@
        i32.const 4
        i32.sub
        i32.gt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
        drop
        i32.const 0
        local.set $4
@@ -420,7 +420,7 @@
          i32.add
          i32.load8_u
          i32.eqz
-         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$136
+         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
          drop
          local.get $4
          i32.const 1
@@ -492,14 +492,14 @@
      local.get $12
      i32.lt_u
      if
-      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137 (result i32)
+      block $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$138 (result i32)
        i32.const -1
        local.get $17
        local.get $3
        i32.sub
        i32.const 4
        i32.lt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$138
        drop
        i32.const -1
        local.get $3
@@ -511,7 +511,7 @@
        i32.const 4
        i32.sub
        i32.gt_u
-       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
+       br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$138
        drop
        i32.const 0
        local.set $4
@@ -528,7 +528,7 @@
          i32.add
          i32.load8_u
          i32.eqz
-         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$137
+         br_if $__inlined_func$build/teto-generated/teto-threads/__bq_4e884e49_startupEntry$138
          drop
          local.get $4
          i32.const 1

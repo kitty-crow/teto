@@ -404,13 +404,13 @@
      end
      local.tee $8
      if
-      block $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$589
+      block $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$591
        i32.const 3268
        i32.load
        local.tee $5
        local.get $2
        i32.eq
-       br_if $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$589
+       br_if $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$591
        i32.const 3264
        i32.load
        local.set $12
@@ -435,7 +435,7 @@
           local.get $13
           i32.load
           local.set $5
-          br $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$589
+          br $__inlined_func$build/teto-generated/teto/__bq_12aa20f2_parentOf$591
          end
          local.get $5
          i32.const 1
