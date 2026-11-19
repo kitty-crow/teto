@@ -39,6 +39,39 @@ CI verifies the generated source and reference binary checksums.
 See [build instructions](docs/build.md) and
 [architecture](docs/architecture.md).
 
+## Releases
+
+[GitHub Releases](https://github.com/kittycrow-kittyx/teto/releases) publishes
+one architecture-independent `teto-v<version>-wasm.tar.gz` archive per
+version tag, together with its `SHA256SUMS` checksum file. Both the baseline
+and threaded WASM kernels are included. The archive preserves the build
+layout and includes the manifest, host ABI declarations and licence.
+
+The release workflow uses Bun and assembles the committed modular WAT using
+the existing build script, which verifies the source checksums and both
+WASM variants against the reference manifest. No upstream compiler checkout
+or source regeneration is required. The publishing job runs only after the
+build and packaging job succeeds. Existing releases are not overwritten.
+
+To verify and extract the upcoming 2.2.0 distribution:
+
+```sh
+sha256sum -c SHA256SUMS
+tar -xzf teto-v2.2.0-wasm.tar.gz
+```
+
+A manual workflow run builds, verifies and packages without publishing.
+Once the source builds successfully, create and push the version tag on the
+verified commit (the tag must match the version in `package.json`):
+
+```sh
+git tag -a v2.2.0 -m "Teto v2.2.0"
+git push origin v2.2.0
+```
+
+Use a new version tag for subsequent releases, and enable immutable releases
+in the repository settings to prevent published assets and tags from being changed.
+
 ## Licence
 
 [MIT](LICENSE).
