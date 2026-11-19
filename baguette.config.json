@@ -1,22 +1,22 @@
 {
   "schema": 1,
   "name": "Teto",
-  "project": "build/thistle-source/tsconfig.json",
+  "project": "thistle/tsconfig.json",
   "entries": [
-    "build/thistle-source/src/native/abi.ts",
-    "build/thistle-source/src/native/kernel.ts",
-    "build/thistle-source/src/native/vfs.ts",
-    "build/thistle-source/src/native/thx.ts",
-    "build/thistle-source/src/native/start.ts"
+    "thistle/src/native/abi.ts",
+    "thistle/src/native/kernel.ts",
+    "thistle/src/native/vfs.ts",
+    "thistle/src/native/thx.ts",
+    "thistle/src/native/start.ts"
   ],
   "generatedDir": "build/teto-generated",
-  "outDir": "dist/teto",
+  "outDir": "build/reference",
   "moduleBaseName": "teto",
   "intrinsicModules": [
-    "build/thistle-source/src/native/types.ts",
-    "build/thistle-source/src/native/memory.ts",
-    "build/thistle-source/src/native/word.ts",
-    "build/thistle-source/src/core/rv64-numbers.ts"
+    "thistle/src/native/types.ts",
+    "thistle/src/native/memory.ts",
+    "thistle/src/native/word.ts",
+    "thistle/src/core/rv64-numbers.ts"
   ],
   "abi": {
     "exports": "all-exported-functions",
@@ -92,6 +92,5 @@
     "Ptr": "number"
   },
   "materialiseInferredTypes": true,
-  "canonicalSource": "Thistle",
-  "canonicalRevision": "RESOLVED_BY_OFFICIAL_TETO_BUILD"
+  "canonicalSource": "Thistle"
 }

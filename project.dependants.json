@@ -2,7 +2,7 @@
   "schema": 1,
   "dependants": [
     {
-      "repository": "kitty-crow/mikuOS",
+      "repository": "kittycrow-kittyx/mikuOS",
       "dependency": "Teto",
       "event": "upstream-updated",
       "impact": [

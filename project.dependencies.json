@@ -2,28 +2,19 @@
   "schema": 1,
   "dependencies": [
     {
-      "name": "ThistleASM",
-      "repository": "kitty-crow/thistle-asm",
-      "path": "src/asm",
-      "commit": "2e6ce603ceeb5b202aa68c0b1a5001fba85b8d77",
-      "relationship": "runtime",
-      "direct": false,
-      "updatePolicy": "pull-request"
-    },
-    {
-      "name": "KITTYX",
-      "repository": "kitty-crow/kittyx",
-      "path": "kittyx",
-      "commit": "6d6dbac796d59e8ea07c52cbcd3a0b7f181da163",
-      "relationship": "contract",
-      "direct": false,
+      "name": "Thistle",
+      "repository": "kittycrow-kittyx/thistle",
+      "path": "thistle",
+      "commit": "19a571d6da85f63256041766d5200ad50e825423",
+      "relationship": "build",
+      "direct": true,
       "updatePolicy": "pull-request"
     },
     {
       "name": "Baguette",
-      "repository": "kitty-crow/baguette",
+      "repository": "kittycrow-kittyx/baguette",
       "path": "baguette",
-      "commit": "04992d4fd26d6dbc27b21e7afdd6cb99627e358a",
+      "commit": "6fc531a1d169ca2edd3611f09335e8a812b7f081",
       "relationship": "build",
       "direct": true,
       "updatePolicy": "pull-request"

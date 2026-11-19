@@ -1,49 +1,52 @@
-name: Test dependency update
-
+name: Regenerate for dependency update
 on:
   repository_dispatch:
-    types: [dependency-updated]
+    types: [upstream-updated, dependency-updated]
   workflow_dispatch:
     inputs:
       dependency:
-        description: Dependency name from project.dependencies.json
+        description: Thistle or Baguette
         required: true
       revision:
-        description: Exact commit to test
+        description: Exact commit
         required: true
-
 permissions:
   contents: write
   pull-requests: write
-
 concurrency:
   group: dependency-${{ github.event.client_payload.dependency || inputs.dependency }}
-  cancel-in-progress: true
-
+  cancel-in-progress: false
 jobs:
-  compatibility:
+  regenerate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           submodules: recursive
           fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Select dependency revision
+      - run: npm install --package-lock=false
+      - name: Select pinned revision
         env:
           DEPENDENCY: ${{ github.event.client_payload.dependency || inputs.dependency }}
           REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
-        run: scripts/ci/update-dependency.sh "$DEPENDENCY" "$REVISION"
-      - name: Install
-        run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
-      - name: Compatibility suite
-        run: npm test
-      - name: Open or update approval-only pull request
+        run: |
+          [[ "$REVISION" =~ ^[a-f0-9]{40}$ ]]
+          case "$DEPENDENCY" in
+            Thistle|Baguette) ;;
+            *) exit 2 ;;
+          esac
+          bash scripts/ci/update-dependency.sh "$DEPENDENCY" "$REVISION"
+          git add -- "${DEPENDENCY,,}" project.dependencies.json
+          git submodule update --init --recursive
+          bash scripts/regenerate.sh
+      - name: Open an approval-only source update
         env:
           GH_TOKEN: ${{ github.token }}
           DEPENDENCY: ${{ github.event.client_payload.dependency || inputs.dependency }}
           REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
-        run: scripts/ci/open-dependency-pr.sh "$DEPENDENCY" "$REVISION"
+        run: bash scripts/ci/open-dependency-pr.sh "$DEPENDENCY" "$REVISION"
