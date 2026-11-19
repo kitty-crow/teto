@@ -13,6 +13,8 @@ items = {item["name"]: item for item in data.get("dependencies", [])}
 if name not in items:
     raise SystemExit(f"unknown dependency: {name}")
 item = items[name]
+if not item.get("direct", False):
+    raise SystemExit(f"update {name} through its owning direct dependency")
 submodule = item["path"]
 subprocess.run(["git", "-C", submodule, "fetch", "origin", revision], check=True)
 subprocess.run(["git", "-C", submodule, "checkout", "--detach", revision], check=True)
