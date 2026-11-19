@@ -1,5 +1,7 @@
 name: Regenerate for dependency update
 on:
+  schedule:
+    - cron: '17 3 * * *'
   repository_dispatch:
     types: [upstream-updated, dependency-updated]
   workflow_dispatch:
@@ -13,27 +15,63 @@ on:
 permissions:
   contents: write
   pull-requests: write
-concurrency:
-  group: dependency-${{ github.event.client_payload.dependency || inputs.dependency }}
-  cancel-in-progress: false
 jobs:
+  resolve:
+    name: Select dependency updates
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      updates: ${{ steps.resolve.outputs.updates }}
+      needed: ${{ steps.resolve.outputs.needed }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Resolve published revisions
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          DEPENDENCY: ${{ github.event.client_payload.dependency || inputs.dependency }}
+          REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
+          SOURCE_REPOSITORY: ${{ github.event.client_payload.source_repository }}
+        run: bash scripts/ci/resolve-dependency-updates.sh
+
   regenerate:
+    name: Validate dependency compatibility (${{ matrix.dependency }})
+    needs: resolve
+    if: needs.resolve.outputs.needed == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.resolve.outputs.updates) }}
+    concurrency:
+      group: dependency-${{ matrix.dependency }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out source
+        uses: actions/checkout@v5
         with:
           ref: main
           submodules: recursive
           fetch-depth: 0
-      - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v5
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 22
-      - run: npm install --package-lock=false
-      - name: Select pinned revision
+          bun-version: 1.4.5
+      - name: Install dependencies
+        run: bun install --no-save
+      - name: Strict Code Guards
+        run: bun run guards
+      - name: Type-check build scripts
+        run: bash scripts/build.sh type-check
+      - name: Select published revision
         env:
-          DEPENDENCY: ${{ github.event.client_payload.dependency || inputs.dependency }}
-          REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
+          DEPENDENCY: ${{ matrix.dependency }}
+          REVISION: ${{ matrix.revision }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           [[ "$REVISION" =~ ^[a-f0-9]{40}$ ]]
           case "$DEPENDENCY" in
@@ -41,12 +79,34 @@ jobs:
             *) exit 2 ;;
           esac
           bash scripts/ci/update-dependency.sh "$DEPENDENCY" "$REVISION"
-          git add -- "${DEPENDENCY,,}" project.dependencies.json
-          git submodule update --init --recursive
-          bash scripts/regenerate.sh
+      - name: Verify upstream pins
+        run: bash scripts/verify-pins.sh
+      - name: Download upstream releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/fetch-upstream.sh
+      - name: Install upstream dependencies
+        run: |
+          bun install --cwd build/upstream/baguette --frozen-lockfile
+          bun install --cwd build/upstream/baguette/bake --frozen-lockfile
+      - name: Transpile source
+        run: bash scripts/regenerate.sh --source-only
+      - name: Verify generated source
+        run: bash scripts/build.sh verify-source
+      - name: Link modular WAT
+        run: bash scripts/build.sh link
+      - name: Compile WebAssembly
+        run: bash scripts/build.sh compile
+      - name: Verify WebAssembly
+        run: bash scripts/build.sh verify
+      - name: Stage verified dependency and generated source
+        env:
+          DEPENDENCY: ${{ matrix.dependency }}
+          REVISION: ${{ matrix.revision }}
+        run: bash scripts/ci/stage-dependency-update.sh "$DEPENDENCY" "$REVISION"
       - name: Open an approval-only source update
         env:
           GH_TOKEN: ${{ github.token }}
-          DEPENDENCY: ${{ github.event.client_payload.dependency || inputs.dependency }}
-          REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
+          DEPENDENCY: ${{ matrix.dependency }}
+          REVISION: ${{ matrix.revision }}
         run: bash scripts/ci/open-dependency-pr.sh "$DEPENDENCY" "$REVISION"

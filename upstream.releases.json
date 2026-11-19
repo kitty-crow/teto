@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "dependencies": [
+    {
+      "repository": "kittycrow-kittyx/thistle",
+      "path": "thistle",
+      "commit": "76932c85c4db2eb481345aafe8611e6f53de9d85",
+      "tag": "v2.2.1"
+    },
+    {
+      "repository": "kittycrow-kittyx/baguette",
+      "path": "baguette",
+      "commit": "6358889e2f63cbfc29b161b23454ce6e6301da9a",
+      "tag": "v1.0.1"
+    }
+  ]
+}

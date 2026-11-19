@@ -9,19 +9,20 @@
     "teto:build": "bash scripts/build.sh",
     "regenerate": "bash scripts/regenerate.sh",
     "test": "bash scripts/build.sh",
-    "check": "bash scripts/build.sh"
+    "check": "bun run guards && bun --bun tsc --noEmit --project tsconfig.scripts.json",
+    "guards": "bash scripts/guards.sh",
+    "update:dependency": "bash scripts/update-dependency.sh"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
     "@types/node": "^26.1.1",
     "assemblyscript": "0.28.19",
     "binaryen": "130.0.0-nightly.20260609",
-    "bun": "1.3.14",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "@kitty-crow/code-guards": "git+https://github.com/kitty-crow/code-guards.git#d1ce06c6b4a71e5f94ca97ba4b0f6780408aa3f6"
   },
   "engines": {
-    "bun": ">=1.1.0",
-    "node": ">=20.0.0"
+    "bun": ">=1.4.5"
   },
   "author": {
     "name": "Kitty Crow",

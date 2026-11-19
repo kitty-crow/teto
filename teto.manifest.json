@@ -2,7 +2,7 @@
   "schema": 3,
   "name": "Teto",
   "transpiler": "Baguette",
-  "transpilerVersion": "0.2.6",
+  "transpilerVersion": "1.0.1",
   "executionModel": "ahead-of-time-native-webassembly",
   "javascriptInGeneratedModule": false,
   "javascriptVirtualMachine": false,
@@ -94,13 +94,13 @@
     }
   ],
   "canonicalSource": "Thistle",
-  "canonicalRevision": "a2be03338126ae7afd6ecb6cd4a18c30ae583459",
+  "canonicalRevision": "76932c85c4db2eb481345aafe8611e6f53de9d85",
   "canonicalOriginalEntries": [
-    "../thistle/src/native/abi.ts",
-    "../thistle/src/native/kernel.ts",
-    "../thistle/src/native/vfs.ts",
-    "../thistle/src/native/thx.ts",
-    "../thistle/src/native/start.ts"
+    "upstream/thistle/src/native/abi.ts",
+    "upstream/thistle/src/native/kernel.ts",
+    "upstream/thistle/src/native/vfs.ts",
+    "upstream/thistle/src/native/thx.ts",
+    "upstream/thistle/src/native/start.ts"
   ],
   "canonicalOriginalModules": [
     "thistle/src/core/native-types.ts",
@@ -146,7 +146,7 @@
   },
   "compiler": {
     "frontend": "TypeScript 5.9.3 semantic checker and module resolver",
-    "lowering": "Baguette 0.2.6 symbol-safe whole-program lowering",
+    "lowering": "Baguette 1.0.1 symbol-safe whole-program lowering",
     "inferredTypeMaterialisation": true,
     "moduleFeatures": [
       "named and default imports",
@@ -553,8 +553,8 @@
     "export": false
   },
   "toolchain": {
-    "Thistle": "a2be03338126ae7afd6ecb6cd4a18c30ae583459",
-    "Bake": "57127ffd6e2d09dae416e2a8220a42a407095e5e",
-    "Baguette": "ac724688278e5dcb5996961c2d2550c8a454b31e"
+    "Thistle": "76932c85c4db2eb481345aafe8611e6f53de9d85",
+    "Bake": "30f7c767584737bf001d2f99b7d303b809bb4f0f",
+    "Baguette": "6358889e2f63cbfc29b161b23454ce6e6301da9a"
   }
 }

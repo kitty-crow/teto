@@ -1,3 +1,8 @@
-# Shell and Python files are project automation/support tooling, not the implementation.
+# Shell and TypeScript are host tooling and ABI declarations.
 *.sh linguist-detectable=false
-*.py linguist-detectable=false
+*.ts linguist-detectable=false
+*.mts linguist-detectable=false
+*.cts linguist-detectable=false
+
+# Count the committed WebAssembly kernel source.
+*.wat linguist-language=WebAssembly linguist-detectable=true

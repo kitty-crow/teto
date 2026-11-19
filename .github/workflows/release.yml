@@ -1,28 +1,41 @@
 name: Release
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_run:
+    workflows: [Kernel source and build validation]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: release-${{ github.ref }}
+  group: wasm-release
   cancel-in-progress: false
 jobs:
   build:
     name: Build WASM
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+      VALIDATION_RUN_ID: ${{ github.event.workflow_run.id || '' }}
     outputs:
+      source: ${{ steps.version.outputs.source }}
+      publish: ${{ steps.version.outputs.publish }}
+      package: ${{ steps.version.outputs.package }}
       tag: ${{ steps.version.outputs.tag }}
       archive: ${{ steps.version.outputs.archive }}
     steps:
-      - name: Checkout
+      - name: Check out source
         uses: actions/checkout@v5
-      - name: Setup Bun
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+      - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.14
+          bun-version: 1.4.5
       - name: Validate version
         id: version
         run: |
@@ -30,15 +43,50 @@ jobs:
           version="$(bun -e 'console.log((await Bun.file("package.json").json()).version)')"
           [[ "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]
           tag="v$version"
-          if [[ "$GITHUB_REF_TYPE" == tag ]]; then
-            test "$GITHUB_REF_NAME" = "$tag"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          printf 'tag=%s\narchive=teto-%s-wasm.tar.gz\nsource=%s\n' "$tag" "$tag" "$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+            echo "package=true" >> "$GITHUB_OUTPUT"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
-          printf 'tag=%s\narchive=teto-%s-wasm.tar.gz\n' "$tag" "$tag" >> "$GITHUB_OUTPUT"
-      - name: Install Dependencies
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$SOURCE_SHA"
+          test -n "$VALIDATION_RUN_ID"
+          gh api "repos/$GH_REPO/actions/runs/$VALIDATION_RUN_ID" | jq -e --arg sha "$SOURCE_SHA" --arg repo "$GH_REPO" '.name == "Kernel source and build validation" and .head_sha == $sha and .head_branch == "main" and .head_repository.full_name == $repo and .event == "push" and .status == "completed" and .conclusion == "success"'
+          if gh release view "$tag" --repo "$GH_REPO" >/dev/null 2>&1; then
+            echo "package=false" >> "$GITHUB_OUTPUT"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Release $tag already exists; use a new package version for subsequent releases."
+            exit 0
+          fi
+          ref="$(git ls-remote origin "refs/tags/$tag^{}" | cut -f1)"
+          if [[ -z "$ref" ]]; then ref="$(git ls-remote origin "refs/tags/$tag" | cut -f1)"; fi
+          [[ -z "$ref" || "$ref" == "$SOURCE_SHA" ]]
+          echo "package=true" >> "$GITHUB_OUTPUT"
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+      - name: Install dependencies
+        if: steps.version.outputs.package == 'true'
         run: bun install --no-save
-      - name: Build and Verify WASM
-        run: bun run --bun build
-      - name: Package WASM
+      - name: Strict Code Guards
+        if: steps.version.outputs.package == 'true'
+        run: bun run guards
+      - name: Type-check build scripts
+        if: steps.version.outputs.package == 'true'
+        run: bash scripts/build.sh type-check
+      - name: Verify generated source
+        if: steps.version.outputs.package == 'true'
+        run: bash scripts/build.sh verify-source
+      - name: Link modular WAT
+        if: steps.version.outputs.package == 'true'
+        run: bash scripts/build.sh link
+      - name: Compile WebAssembly
+        if: steps.version.outputs.package == 'true'
+        run: bash scripts/build.sh compile
+      - name: Verify WebAssembly
+        if: steps.version.outputs.package == 'true'
+        run: bash scripts/build.sh verify
+      - name: Package WebAssembly
+        if: steps.version.outputs.package == 'true'
         env:
           ARCHIVE: ${{ steps.version.outputs.archive }}
         run: |
@@ -52,14 +100,16 @@ jobs:
             LICENSE dist/teto/teto.wasm dist/teto/teto-threads.wasm \
             dist/teto/teto.manifest.json dist/teto/host-interface.d.ts
           tar -tzf "release/$ARCHIVE"
-      - name: Generate Checksums
+      - name: Generate checksums
+        if: steps.version.outputs.package == 'true'
         env:
           ARCHIVE: ${{ steps.version.outputs.archive }}
         run: |
           cd release
           sha256sum "$ARCHIVE" > SHA256SUMS
           sha256sum -c SHA256SUMS
-      - name: Upload Release Artefact
+      - name: Upload release artefact
+        if: steps.version.outputs.package == 'true'
         uses: actions/upload-artifact@v6
         with:
           name: teto-wasm
@@ -68,26 +118,81 @@ jobs:
             release/SHA256SUMS
           if-no-files-found: error
   publish:
-    name: Publish Release
-    if: github.event_name == 'push' && github.ref_type == 'tag'
+    name: Publish release
+    if: needs.build.outputs.publish == 'true'
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      SOURCE_SHA: ${{ needs.build.outputs.source }}
     steps:
-      - name: Download Release Artefact
+      - name: Check out source
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          fetch-depth: 0
+      - name: Download release artefact
         uses: actions/download-artifact@v7
         with:
           name: teto-wasm
           path: release
-      - name: Verify Checksums
+      - name: Verify checksums
         run: cd release && sha256sum -c SHA256SUMS
-      - name: Publish GitHub Release
+      - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
           TAG: ${{ needs.build.outputs.tag }}
           ARCHIVE: ${{ needs.build.outputs.archive }}
         run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$SOURCE_SHA"
+          if gh release view "$TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
+            echo "::notice::Release $TAG already exists; refusing to overwrite it."
+            exit 0
+          fi
+          for file in dist/teto/teto.wasm dist/teto/teto-threads.wasm dist/teto/teto.manifest.json dist/teto/host-interface.d.ts LICENSE; do
+            tar -tzf "release/$ARCHIVE" "$file" >/dev/null
+          done
+          ref="$(git ls-remote origin "refs/tags/$TAG^{}" | cut -f1)"
+          if [[ -z "$ref" ]]; then ref="$(git ls-remote origin "refs/tags/$TAG" | cut -f1)"; fi
+          if [[ -z "$ref" ]]; then
+            git -c user.name=github-actions -c user.email=41898282+github-actions[bot]@users.noreply.github.com tag -a "$TAG" "$SOURCE_SHA" -m "Teto $TAG"
+            git push origin "refs/tags/$TAG"
+          else
+            test "$ref" = "$SOURCE_SHA"
+          fi
           gh release create "$TAG" "release/$ARCHIVE" release/SHA256SUMS \
-            --verify-tag --generate-notes --title "Teto $TAG"
+            --repo "$GH_REPO" --verify-tag --generate-notes --title "Teto $TAG"
+          download="$(mktemp -d)"
+          gh release download "$TAG" --repo "$GH_REPO" --pattern "$ARCHIVE" --pattern SHA256SUMS --dir "$download"
+          (cd "$download" && sha256sum -c SHA256SUMS)
+          cmp "release/$ARCHIVE" "$download/$ARCHIVE"
+          cmp release/SHA256SUMS "$download/SHA256SUMS"
+          rm -rf "$download"
+          ref="$(git ls-remote origin "refs/tags/$TAG^{}" | cut -f1)"
+          if [[ -z "$ref" ]]; then ref="$(git ls-remote origin "refs/tags/$TAG" | cut -f1)"; fi
+          test "$ref" = "$SOURCE_SHA"
+
+  consolidate:
+    name: Consolidate existing v2.2.0 release
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+      VALIDATION_RUN_ID: ${{ github.event.workflow_run.id }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ env.SOURCE_SHA }}
+          fetch-depth: 0
+      - name: Verify and consolidate existing release
+        run: bash scripts/ci/consolidate-release.sh

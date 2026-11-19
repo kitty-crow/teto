@@ -1,27 +1,46 @@
 name: Kernel source and build validation
+
 on:
   push:
     branches: [main, 'refactor/**']
   pull_request:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   source:
     name: Transpile source
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out source
+        uses: actions/checkout@v5
         with:
           submodules: recursive
-      - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v5
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 22
-      - run: npm install --package-lock=false
-      - name: Transpile source from pinned toolchain
-        run: bash scripts/regenerate.sh
+          bun-version: 1.4.5
+      - name: Install dependencies
+        run: bun install --no-save
+      - name: Strict Code Guards
+        run: bun run guards
+      - name: Type-check build scripts
+        run: bash scripts/build.sh type-check
+      - name: Verify upstream pins
+        run: bash scripts/verify-pins.sh
+      - name: Download upstream releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/fetch-upstream.sh
+      - name: Install upstream dependencies
+        run: |
+          bun install --cwd build/upstream/baguette --frozen-lockfile
+          bun install --cwd build/upstream/baguette/bake --frozen-lockfile
+      - name: Transpile source
+        run: bash scripts/regenerate.sh --source-only
       - name: Upload generated source
         uses: actions/upload-artifact@v6
         with:
@@ -32,12 +51,20 @@ jobs:
             teto.manifest.json
             SHA256SUMS
           if-no-files-found: error
+
   compile:
     name: Compile
     needs: source
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out source
+        uses: actions/checkout@v5
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.5
+      - name: Install dependencies
+        run: bun install --no-save
       - name: Remove old generated source
         run: rm -rf src abi
       - name: Download generated source
@@ -45,14 +72,14 @@ jobs:
         with:
           name: teto-generated-source
           path: .
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-      - run: npm install --package-lock=false
       - name: Verify generated source
-        run: sha256sum -c SHA256SUMS
-      - name: Compile freshly generated source
-        run: bash scripts/build.sh
+        run: bash scripts/build.sh verify-source
+      - name: Link modular WAT
+        run: bash scripts/build.sh link
+      - name: Compile WebAssembly
+        run: bash scripts/build.sh compile
+      - name: Verify WebAssembly
+        run: bash scripts/build.sh verify
       - name: Verify committed source matches regeneration
         run: |
           git add -A -- src abi teto.manifest.json SHA256SUMS

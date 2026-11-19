@@ -1,4 +1,4 @@
-2f42aa864a2e0aff2de0fe3d8f10d22c9ba504b98e5dd11a367ccacdac1e5d92  abi/host-interface.d.ts
+349c8d1eda2ef1fa12abbbceaa280cd39b7bda91ec183f31b2d6ac4af9fe3d34  abi/host-interface.d.ts
 d6d935ddf109aa64035c3cf624a633736bfb3a21f24f4f5dd3c274c30be63e46  src/baseline/core/native-types.wat
 1c6999634bc38b9a8707320c885aceebc2de01ffdd68851af0e921bd2aefa2fb  src/baseline/core/rv64-arithmetic.wat
 8a12073f890af8471218fa804421bd425022de4c4f62022c5eed0c43e36cf756  src/baseline/core/rv64-branch.wat
@@ -43,4 +43,4 @@ d6d935ddf109aa64035c3cf624a633736bfb3a21f24f4f5dd3c274c30be63e46  src/threaded/n
 d6d935ddf109aa64035c3cf624a633736bfb3a21f24f4f5dd3c274c30be63e46  src/threaded/native/word.wat
 d6d935ddf109aa64035c3cf624a633736bfb3a21f24f4f5dd3c274c30be63e46  src/threaded/runtime.wat
 1893503b6dd8e56418ae22747983b5ccd59187a7d02f9daddb1fc94aa856b389  src/threaded/vm/rv64-immediate.wat
-196d5cd127a3198c7ed5e615d6cad45567d7a1c0f1696db0b87f65e15d6e5639  teto.manifest.json
+b43856078012c3c734bb92550b63f4aed0bf4ad1ff628c7805588094e7583263  teto.manifest.json
