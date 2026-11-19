@@ -1,13 +1,14 @@
 # Compatibility path
 
 Teto runs migrated operations in the generated WebAssembly kernel.
-Operations that have not yet been migrated return an explicit
-fallback request and temporarily use the direct Thistle
-compatibility implementation. Parity tests cover both paths.
+An operation not yet handled there may request a syscall-level fallback
+through the host's direct Thistle compatibility bridge. This does not
+replace the generated kernel or introduce a separate Teto kernel source.
+Parity tests cover both paths.
 
-`THISTLE_TETO_STRICT=1` disables fallback during testing. In strict
-mode, an unmigrated operation reports an unimplemented system call
-instead of crossing into Thistle.
+`THISTLE_TETO_STRICT=1` disables syscall fallback during testing.
+An unsupported request then reports an unimplemented system call
+instead of crossing into the compatibility implementation.
 
 New kernel work should pass in both modes until Teto provides the
 same result and state changes without fallback.

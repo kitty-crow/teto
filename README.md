@@ -2,11 +2,11 @@
 
 **TETO** is **Teto Executes Thistle Optimally**.
 
-Teto is the generated WebAssembly kernel built from the maintained
-Thistle TypeScript source. It retains the Thistle source tree and
-adds the RV64GC execution core, the WebAssembly host interface, and
-the build configuration used to generate baseline and threaded
-kernel modules with Baguette.
+Teto builds a WebAssembly kernel from Thistle's canonical native RV64GC
+TypeScript source. It fetches a recorded Thistle revision, lowers the
+source with Bake and compiles baseline and threaded modules with Baguette.
+Teto provides build orchestration and host integration, not a separate
+maintained kernel implementation.
 
 ## Build and test
 

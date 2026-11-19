@@ -1,4 +1,4 @@
-name: Test thistle upstream
+name: Verify canonical Thistle upstream revision
 
 on:
   repository_dispatch:
@@ -10,8 +10,7 @@ on:
         required: true
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: upstream-thistle
@@ -24,19 +23,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-          fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Merge candidate upstream revision
+      - name: Require an exact upstream source revision
         env:
-          REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
-        run: scripts/ci/update-upstream.sh "$REVISION"
-      - run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
-      - run: npm test
-      - name: Open draft pull request
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REVISION: ${{ github.event.client_payload.new_commit || inputs.revision }}
-        run: scripts/ci/open-upstream-pr.sh "$REVISION"
+          THISTLE_REF: ${{ github.event.client_payload.new_commit || inputs.revision }}
+        run: |
+          [[ "$THISTLE_REF" =~ ^[0-9a-f]{40}$ ]] || { echo 'Expected a 40-character Thistle revision SHA' >&2; exit 2; }
+          echo "THISTLE_REF=$THISTLE_REF" >> "$GITHUB_ENV"
+      - name: Install dependencies
+        run: if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Build and verify only the selected canonical Thistle revision
+        run: npm test
